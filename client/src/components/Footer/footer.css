@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.footer {
+    width: 100%;
+    background-color: rgb(49, 113, 177, 0.3);
+    height: 115px;
+    display: flex;
+    margin-top: 5rem;
+    position: relative;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footer p {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(219, 129, 206, 0.8);
+    font-size: 1.3rem;
+    font-weight: 200;
+    transition: 0.2s;
+}
+.footer p:hover {
+    font-weight: 400;
+    color: rgba(219, 129, 206);
+}
