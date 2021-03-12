@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+import { Typography, Avatar } from '@material-ui/core';
+import useStyles from './styles';
 
 import './searchbar.css';
 
 function SearchBar() {
+
+    const classes = useStyles();
+
+    const user = null;
 
     // const classes = useStyles();
     const [search, setSearch] = useState();
@@ -25,7 +32,7 @@ function SearchBar() {
     <div className="search">
         <div className='logo'>
             {/* <img src='https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png' alt='logo' /> */}
-            MOMENTAZOS
+            <p component={Link} to='/' >MOMENTAZOS</p>
         </div>
         <form onSubmit={handleSubmit}>
             <div className='form-box'>
@@ -45,6 +52,21 @@ function SearchBar() {
                 />
             </div>
         </form>
+        <div className={classes.toolbar} >
+            { user ? (
+                <div className={classes.profile}>
+                    <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>
+                        {user.result.name.charAt(0)}
+                    </Avatar>
+                    <Typography className={classes.userName} variant='h6' >
+                        {user.result.name}
+                    </Typography>
+                    <button className='logoutButton' >CERRAR SESIÓN</button>
+                </div>
+            ) : (
+                <button component={Link} to='/auth' className='login' >Registrarse</button>
+            )}
+        </div>
     </div>
     )
 }
