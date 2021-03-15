@@ -57,10 +57,10 @@ a:visited {
     border: none;
     border-radius: 25px;
     outline: none;
-    width: 170px;
+    width: 15rem;
     font-family: 'Roboto', sans-serif;
     padding-right: 50px;
-    margin-left: 23rem;
+    margin-left: 22rem;
 }
 .search-btn {
     height: 30px;
@@ -107,6 +107,10 @@ button:focus {outline:0;}
         width: 100%;
         margin: 0px;
         height: 100%;
+        display: block;
+        margin-top: 8rem;
+        position:static;
+        margin-left: 3rem;
     }
     .search-btn {
         display: none;

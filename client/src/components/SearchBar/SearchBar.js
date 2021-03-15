@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { Typography, Avatar, Button } from '@material-ui/core';
+import { Typography, Avatar } from '@material-ui/core';
 import useStyles from './styles';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import './searchbar.css';
 
@@ -10,9 +11,18 @@ function SearchBar() {
 
     const classes = useStyles();
 
-    const user = null;
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    // const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch({ type: 'LOGOUT' });
+
+        history.push('/');
+
+        setUser(null);
+    }
+
     const [search, setSearch] = useState();
 
     const history = useHistory();
@@ -29,6 +39,12 @@ function SearchBar() {
         // : history.push(`?q=${search}&page=1`);
         // window.location.reload();
     };
+
+    useEffect(() => {
+        const token = user?.token;
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [url]);
 
     return (
     <div className="search">
@@ -66,10 +82,10 @@ function SearchBar() {
                     <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>
                         {user.result.name.charAt(0)}
                     </Avatar>
-                    <Typography className={classes.userName} variant='h6' >
+                    <Typography className={`${classes.userName} ${classes.typography}`} >
                         {user.result.name}
                     </Typography>
-                    <button className='logoutButton' >CERRAR SESIÓN</button>
+                    <button className='login' onClick={logout} >CERRAR SESIÓN</button>
                 </div>
             ) : (
                 <Link to='/auth'>

@@ -2,6 +2,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
   appBar: {
     borderRadius: 15,
     margin: '30px 0',
@@ -19,18 +33,20 @@ export default makeStyles((theme) => ({
     marginLeft: '15px',
   },
   toolbar: {
+    marginLeft: '2rem',
     display: 'flex',
     justifyContent: 'flex-end',
     width: '400px',
   },
   profile: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     width: '400px',
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
+    fontSize: '1.1rem',
   },
   brandContainer: {
     display: 'flex',
@@ -40,4 +56,10 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  [theme.breakpoints.down('sm')] : {
+    toolbar: {
+      marginLeft: '-13.5rem',
+      width: '100%',
+    }
+  }
 }));
