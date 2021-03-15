@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { Typography, Avatar } from '@material-ui/core';
+import { Typography, Avatar, Button } from '@material-ui/core';
 import useStyles from './styles';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import './searchbar.css';
 
@@ -14,7 +15,8 @@ function SearchBar() {
     // const classes = useStyles();
     const [search, setSearch] = useState();
 
-    // const history = useHistory();
+    const history = useHistory();
+    const url = useLocation();
 
     const handleChange = (e) => {
         setSearch(e.target.value);
@@ -32,26 +34,32 @@ function SearchBar() {
     <div className="search">
         <div className='logo'>
             {/* <img src='https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png' alt='logo' /> */}
-            <p component={Link} to='/' >MOMENTAZOS</p>
+            <Link to='/'>
+                <p>MOMENTAZOS</p>
+            </Link>
         </div>
-        <form onSubmit={handleSubmit}>
-            <div className='form-box'>
+        {   url.pathname === '/' ? 
+            <form onSubmit={handleSubmit}>
+                <div className='form-box'>
 
-                <input
-                    className="search-input"
-                    type="text"
-                    placeholder="Busca tu Momentazo"
-                    onChange={handleChange}
-                    id="input"
-                />
-                <input
-                    className="search-btn"
-                    type="submit"
-                    id="button"
-                    value="🔎"
-                />
-            </div>
-        </form>
+                    <input
+                        className="search-input"
+                        type="text"
+                        placeholder="Busca tu Momentazo"
+                        onChange={handleChange}
+                        id="input"
+                    />
+                    <input
+                        className="search-btn"
+                        type="submit"
+                        id="button"
+                        value="🔎"
+                    />
+                </div>
+            </form>
+            : null
+        }
+        
         <div className={classes.toolbar} >
             { user ? (
                 <div className={classes.profile}>
@@ -64,7 +72,9 @@ function SearchBar() {
                     <button className='logoutButton' >CERRAR SESIÓN</button>
                 </div>
             ) : (
-                <button component={Link} to='/auth' className='login' >Registrarse</button>
+                <Link to='/auth'>
+                    <button type='button' className='login' >INGRESAR</button>
+                </Link>
             )}
         </div>
     </div>
