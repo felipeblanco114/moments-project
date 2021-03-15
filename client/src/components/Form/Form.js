@@ -73,7 +73,9 @@ const Form = ({ currentId, setCurrentId }) => {
                     onChange={(e) => setPostData({ ...postData, title: e.target.value })}
                 />
                 <TextField
-                    name='message' 
+                    name='message'
+                    multiline
+                    rows={4} 
                     variant='outlined'
                     label='Mensaje'
                     fullWidth

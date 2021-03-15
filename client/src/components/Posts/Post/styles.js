@@ -54,13 +54,13 @@ export default makeStyles({
   details: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: '5px',
+    marginTop: '3px',
     marginBottom: '24px',
     marginLeft: '10px'
   },
   title: {
     padding: '0 16px 0',
-    marginTop: '-20px'
+    marginTop: '-1.5rem'
   },
   cardActions: {
     padding: '0 16px 8px 16px',

@@ -32,7 +32,7 @@ const Auth = () => {
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
-                <Typography variant='h5'> { isSignup ? 'Registrarse' : 'Ingresar'} </Typography>
+                <Typography className={classes.typography} variant='h5'> { isSignup ? 'Registrarse' : 'Ingresar'} </Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2} >
                         {
@@ -47,12 +47,12 @@ const Auth = () => {
                         <Input name='password' label='Contraseña' handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
                         { isSignup && <Input name='confirmPassword' label='Repetir contraseña' handleChange={handleChange} type='password' />}
                     </Grid>
-                    <Button type='submit' variant='contained' fullWidth color='primary' className={classes.submit}>
+                    <Button type='submit' variant='contained' fullWidth color='primary' className={`${classes.submit} ${classes.typography}`}>
                         { isSignup ? 'Registrarse' : 'Ingresar'}
                     </Button>
                     <Grid container justify='flex-end' >
                         <Grid item >
-                            <Button onClick={switchMode} >
+                            <Button className={classes.typography} onClick={switchMode} >
                                 { isSignup ? 'Ya tienes una cuenta? Ingresa!' : 'No tienes una cuenta? Regístrate!'}
                             </Button>
                         </Grid>
