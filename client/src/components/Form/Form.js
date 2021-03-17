@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 
+import { Link } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
 
@@ -16,12 +18,12 @@ const Form = ({ currentId, setCurrentId }) => {
     const post = useSelector((state) => currentId ? state.posts.find((p) => currentId === p._id) : null );
 
     const [postData, setPostData] = useState({
-        creator: '',
         title: '',
         message: '',
         tags: '',
         selectedFile: '',
     });
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(() => {
         if(post) setPostData(post)
@@ -30,7 +32,6 @@ const Form = ({ currentId, setCurrentId }) => {
     const clear = () => {
         setCurrentId(0);
         setPostData({
-            creator: '',
             title: '',
             message: '',
             tags: '',
@@ -42,12 +43,22 @@ const Form = ({ currentId, setCurrentId }) => {
         e.preventDefault();
         
         if(currentId === 0) {
-            dispatch(createPost(postData));
+            dispatch(createPost({ ...postData, name: user?.result?.name }));
             clear();
         } else {
-            dispatch(updatePost(currentId, postData));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
             clear();
         }
+    };
+
+    if(!user?.result?.name) {
+        return (
+            <Paper className={classes.paper}>
+                <Typography variant='h6' align='center'>
+                    <Link to='/auth'>Logueate</Link> para crear Momentazos y likear los Momentazos de otras personas!
+                </Typography>
+            </Paper>
+        )
     }
 
     return (
@@ -56,14 +67,6 @@ const Form = ({ currentId, setCurrentId }) => {
                 <Typography variant='h6' className={classes.typography} >
                     {currentId ? 'Edita' : 'Postea'} tu Momentazo
                 </Typography>
-                <TextField
-                    name='creator' 
-                    variant='outlined'
-                    label='Creador'
-                    fullWidth
-                    value={postData.creator}
-                    onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
-                />
                 <TextField
                     name='title' 
                     variant='outlined'

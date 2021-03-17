@@ -5,6 +5,8 @@ import useStyles from './styles';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import decode from 'jwt-decode';
+
 import './searchbar.css';
 
 function SearchBar() {
@@ -43,16 +45,22 @@ function SearchBar() {
     useEffect(() => {
         const token = user?.token;
 
+        if (token) {
+            const decodedToken = decode(token)
+
+            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
+
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [url]);
 
     return (
     <div className="search">
-        <div className='logo'>
             <Link to='/'>
+            <div className='logo'>
                 <p>MOMENTAZOS</p>
+            </div>
             </Link>
-        </div>
         {   url.pathname === '/' ? 
             <form onSubmit={handleSubmit}>
                 <div className='form-box'>
@@ -78,7 +86,7 @@ function SearchBar() {
         <div className={classes.toolbar} >
             {url.pathname === '/' ? <> { user?.result ? (
                 <div className={classes.profile}>
-                    <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>
+                    <Avatar className={`${classes.purple} ${classes.typography}`} alt={user?.result.name} src={user?.result.imageUrl}>
                         {user?.result.name.charAt(0)}
                     </Avatar>
                     <Typography className={`${classes.userName} ${classes.typography}`} >

@@ -19,6 +19,12 @@
     font-size: 1.3rem;
     font-weight: 200;
     transition: 0.2s;
+    cursor: default;
+    /* DON'T COPY */
+    -webkit-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;      
+    user-select: none; 
 }
 .footer p:hover {
     font-weight: 400;

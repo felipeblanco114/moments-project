@@ -4,9 +4,6 @@ import { blue, indigo, pink, red } from '@material-ui/core/colors';
 export default makeStyles((theme) => ({
   typography: {
     fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
       'Roboto',
       '"Helvetica Neue"',
       'Arial',
@@ -49,9 +46,13 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     fontSize: '1.1rem',
     color: 'rgb(3, 79, 157, 0.7)',
-    cursor: 'pointer',
+    // cursor: 'pointer',
     margin: '0px',
     fontWeight: '500',
+    '-webkit-user-select': 'none',
+    '-moz-user-select': 'none',     
+    '-ms-user-select': 'none',      
+    'user-select': 'none', 
   },
   brandContainer: {
     display: 'flex',
@@ -60,9 +61,11 @@ export default makeStyles((theme) => ({
   purple: {
     color: 'rgb(3, 79, 157, 0.7)',
     backgroundColor: 'rgb(218, 161, 209, 0.3)',
-    width: '2.1rem',
-    height: '2.1rem',
-    border: 'solid .2rem rgb(3, 79, 157, 0.7)'
+    width: '1.9rem',
+    height: '1.9rem',
+    // border: 'solid .2rem rgb(3, 79, 157, 0.7)',
+    fontWeight: 'bold',
+    marginTop: '.25rem',
   },
   [theme.breakpoints.down('sm')] : {
     toolbar: {

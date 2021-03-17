@@ -5,6 +5,7 @@ input:focus {outline:0;}
 a {
     text-decoration: none;
     outline: none;
+    color: rgb(35, 86, 138, 0.5);
 }
 a:visited {
     color: rgba(18, 71, 124);
@@ -23,7 +24,7 @@ a:visited {
     cursor: pointer;
 }
 .logo {
-    width: 120px;
+    width: 14.82rem;
     font-size: 35px;
     font-weight: 200;
     position: absolute;
@@ -31,14 +32,38 @@ a:visited {
     top: 17px;
     transition: 0.2s;
     font-family: 'Roboto', sans-serif;
-    color: rgba(18, 71, 124);
+    color: rgb(35, 86, 138, 0.5);
+    background-color:rgba(242, 223, 245, 0.7);
+    border-radius: .2rem;
 }
-.logo:hover {
-    font-weight: 700;
-}
-.logo p:hover {
-    cursor: pointer;
-}
+.logo:after, .logo:before {
+    content: " ";
+    width: 4%;
+    height: 4%;
+    position: absolute;
+    border: 0px solid #fff;
+    transition: all 1s;
+  }
+  .logo:after {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid rgb(35, 86, 138, 0.5);
+    border-left: 2px solid rgb(35, 86, 138, 0.5);
+  }
+  .logo:before {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid rgb(35, 86, 138, 0.5);
+    border-right: 2px solid rgb(35, 86, 138, 0.5);
+  }
+  .logo:hover {
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  .logo:hover:before, .logo:hover:after {
+    width: 103%;
+    height: 103%;
+  }
 .search {
     width: 100%;
     margin-left: auto;
@@ -47,7 +72,7 @@ a:visited {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgba(219, 129, 206, 0.1);
+    background-color: rgba(218, 142, 206, 0.1);
     height: 70px;
     margin-bottom: 3rem;
 }
