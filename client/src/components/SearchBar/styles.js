@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+import { blue, indigo, pink } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   typography: {
@@ -42,24 +42,34 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-around',
     width: '400px',
+    marginLeft: '4rem',
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
     fontSize: '1.1rem',
+    color: 'rgb(3, 79, 157, 0.7)',
+    cursor: 'pointer',
+    margin: '0px',
+    fontWeight: '500',
   },
   brandContainer: {
     display: 'flex',
     alignItems: 'center',
   },
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
+    color: pink[100],
+    backgroundColor: indigo[400],
+    width: '2.1rem',
+    height: '2.1rem'
   },
   [theme.breakpoints.down('sm')] : {
     toolbar: {
       marginLeft: '-13.5rem',
       width: '100%',
+    },
+    profile: {
+      marginLeft: '0rem',
     }
   }
 }));

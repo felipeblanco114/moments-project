@@ -49,7 +49,6 @@ function SearchBar() {
     return (
     <div className="search">
         <div className='logo'>
-            {/* <img src='https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png' alt='logo' /> */}
             <Link to='/'>
                 <p>MOMENTAZOS</p>
             </Link>
@@ -77,13 +76,13 @@ function SearchBar() {
         }
         
         <div className={classes.toolbar} >
-            { user ? (
+            {url.pathname === '/' ? <> { user?.result ? (
                 <div className={classes.profile}>
-                    <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>
-                        {user.result.name.charAt(0)}
+                    <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>
+                        {user?.result.name.charAt(0)}
                     </Avatar>
                     <Typography className={`${classes.userName} ${classes.typography}`} >
-                        {user.result.name}
+                        {user?.result.name}
                     </Typography>
                     <button className='login' onClick={logout} >CERRAR SESIÓN</button>
                 </div>
@@ -91,7 +90,7 @@ function SearchBar() {
                 <Link to='/auth'>
                     <button type='button' className='login' >INGRESAR</button>
                 </Link>
-            )}
+            )} </> : null}
         </div>
     </div>
     )

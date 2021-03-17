@@ -5,12 +5,13 @@
     background-color: rgb(49, 113, 177, 0.1);
     height: 115px;
     display: flex;
-    margin-top: 7rem;
-    position: relative;
+    /* margin-top: 6rem; */
+    position: absolute;
     bottom: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 5rem;
 }
 .footer p {
     font-family: 'Roboto', sans-serif;
