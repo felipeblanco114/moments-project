@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { blue, indigo, pink } from '@material-ui/core/colors';
+import { blue, indigo, pink, red } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   typography: {
@@ -58,10 +58,11 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   purple: {
-    color: pink[100],
-    backgroundColor: indigo[400],
+    color: 'rgb(3, 79, 157, 0.7)',
+    backgroundColor: 'rgb(218, 161, 209, 0.3)',
     width: '2.1rem',
-    height: '2.1rem'
+    height: '2.1rem',
+    border: 'solid .2rem rgb(3, 79, 157, 0.7)'
   },
   [theme.breakpoints.down('sm')] : {
     toolbar: {

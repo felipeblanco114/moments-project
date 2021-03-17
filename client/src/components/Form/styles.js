@@ -34,5 +34,11 @@ export default makeStyles((theme) => ({
   },
   buttonSubmit: {
     marginBottom: 10,
+    backgroundColor: 'rgb(3, 79, 157, 0.9)',
+    color: 'rgb(218, 161, 209)'
   },
+  clean: {
+    backgroundColor: 'rgb(218, 161, 209)',
+    color: 'rgb(3, 79, 157, 0.9)'
+  }
 }));

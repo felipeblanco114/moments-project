@@ -102,6 +102,7 @@ button:focus {outline:0;}
     }
     .search {
         height: 100px;
+        background-color:rgba(241, 193, 223, 0.0);
     }
     .search-input {
         width: 100%;
