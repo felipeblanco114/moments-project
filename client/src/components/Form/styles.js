@@ -40,5 +40,5 @@ export default makeStyles((theme) => ({
   clean: {
     backgroundColor: 'rgb(218, 161, 209)',
     color: 'rgb(3, 79, 157, 0.9)'
-  }
+  },
 }));
