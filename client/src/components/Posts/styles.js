@@ -11,4 +11,9 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  circular: {
+    marginLeft: '50%',
+    marginTop: '4rem',
+    color: 'white'
+  }
 }));
