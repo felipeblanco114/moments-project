@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
   },
   profile: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'stretch',
     width: '400px',
     marginLeft: '4rem',
   },
@@ -47,7 +47,7 @@ export default makeStyles((theme) => ({
     fontSize: '1.1rem',
     color: 'rgb(3, 79, 157, 0.7)',
     // cursor: 'pointer',
-    margin: '0px',
+    marginLeft: '.8rem',
     fontWeight: '500',
     '-webkit-user-select': 'none',
     '-moz-user-select': 'none',     
@@ -73,7 +73,8 @@ export default makeStyles((theme) => ({
       width: '100%',
     },
     profile: {
-      marginLeft: '0rem',
+      marginLeft: '1rem',
+      marginTop: '-2rem'
     }
   }
 }));

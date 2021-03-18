@@ -113,6 +113,7 @@ a:visited {
     border-radius: .5rem;
     transition: .2s;
     font-weight: bold;
+    margin-left: auto;
 }
 .login:hover {
     color: rgb(3, 79, 157, 0.7);
@@ -149,5 +150,8 @@ button:focus {outline:0;}
     }
     .logo img {
         display: none;
+    }
+    .login {
+        margin-right: 1rem;
     }
   }
