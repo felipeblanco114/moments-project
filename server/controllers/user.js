@@ -13,7 +13,7 @@ export const signin =  async (req ,res) => {
 
         if(!existingUser) return res.status(404).json({ message: 'Este usuario no existe.' });
         
-        const isPasswordCorrect = await bcrypt.compare(password, existinUser.password);
+        const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
     
         if(!isPasswordCorrect) return res.status(400).json({ message: 'Contraseña incorrecta' });
     
