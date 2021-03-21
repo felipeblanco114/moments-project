@@ -38,11 +38,11 @@ a:visited {
 }
 .logo:after, .logo:before {
     content: " ";
-    width: 4%;
-    height: 4%;
+    width: 1%;
+    height: 1%;
     position: absolute;
     border: 0px solid #fff;
-    transition: all 1s;
+    transition: all .5s;
   }
   .logo:after {
     top: -1px;
