@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { blue, indigo, pink, red } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   typography: {

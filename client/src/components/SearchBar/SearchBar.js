@@ -14,6 +14,7 @@ function SearchBar() {
     const classes = useStyles();
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [disabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -32,14 +33,12 @@ function SearchBar() {
 
     const handleChange = (e) => {
         setSearch(e.target.value);
+        if(e.target.value.length > 0) setDisabled(false);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // history.location.pathname === "/"
-        // ? history.push(`search?q=${search}&page=1`)
-        // : history.push(`?q=${search}&page=1`);
-        // window.location.reload();
+    const handleSearch = () => {
+        history.push(`search?q=${search}`);
+        window.location.reload();
     };
 
     useEffect(() => {
@@ -61,8 +60,8 @@ function SearchBar() {
                 <p>MOMENTAZOS</p>
             </div>
             </Link>
-        {   url.pathname === '/' ? 
-            <form onSubmit={handleSubmit}>
+        {   !(url.pathname === '/auth') ? 
+            <form>
                 <div className='form-box'>
 
                     <input
@@ -70,13 +69,16 @@ function SearchBar() {
                         type="text"
                         placeholder="Busca tu Momentazo"
                         onChange={handleChange}
+                        value={search}
+                        autoComplete='off'
                         id="input"
                     />
                     <input
                         className="search-btn"
-                        type="submit"
+                        onClick={handleSearch}
                         id="button"
-                        value="🔎"
+                        value="  🔎"
+                        disabled={disabled}
                     />
                 </div>
             </form>

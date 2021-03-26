@@ -9,6 +9,7 @@ import Home from './components/Home/Home';
 import SearchBar from './components/SearchBar/SearchBar.js'
 import Footer from './components/Footer/Footer';
 import Auth from './components/Auth/Auth';
+import Search from './components/Search/Search';
 
 // import kanagawa from './images/kanagawa.png';
 
@@ -20,6 +21,7 @@ const App = () => {
                 <Switch>
                     <Route path='/' exact component={Home} />
                     <Route path='/auth' exact component={Auth} />
+                    <Route path='/search' component={Search} />
                 </Switch>
             </Container>
             <Footer />

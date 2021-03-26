@@ -88,4 +88,12 @@ export const likePost = async (req, res) => {
     res.json(updatedPost);
 }
 
+export const filterPosts = async (req, res) => {
+    const { title } = req.query;
+    const posts = await PostMessage.find({ 
+        title: {$regex : `.*${title}.*`}
+    });
+    res.json(posts);
+}
+
 export default router;
