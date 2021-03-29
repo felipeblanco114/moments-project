@@ -42,9 +42,9 @@ const Search = () => {
     // FILTER
 
     var postTitle = posts.filter((post) => 
-        post.title.toLowerCase().replaceAll('ó', 'o').replaceAll('á', 'a').replaceAll('é', 'e').replaceAll('í', 'i').replaceAll('ú', 'u') == search || 
+        post.title.toLowerCase().replaceAll('ó', 'o').replaceAll('á', 'a').replaceAll('é', 'e').replaceAll('í', 'i').replaceAll('ú', 'u').replaceAll('!', '') == search || 
         post.name.toLowerCase().replaceAll('ó', 'o').replaceAll('á', 'a').replaceAll('é', 'e').replaceAll('í', 'i').replaceAll('ú', 'u') == search ||
-        post.name.toLowerCase().replaceAll('ó', 'o').replaceAll('á', 'a').replaceAll('é', 'e').replaceAll('í', 'i').replaceAll('ú', 'u').split(' ').includes(search) ||
+        post.name.toLowerCase().replaceAll('ó', 'o').replaceAll('á', 'a').replaceAll('é', 'e').replaceAll('í', 'i').replaceAll('ú', 'u').replaceAll('!', '').split(' ').includes(search) ||
         post.title.toLowerCase().replaceAll('ó', 'o').replaceAll('á', 'a').replaceAll('é', 'e').replaceAll('í', 'i').replaceAll('ú', 'u').split(' ').includes(search) ||
         post.tags.includes(search)
     );
