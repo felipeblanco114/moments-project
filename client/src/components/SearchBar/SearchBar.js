@@ -53,6 +53,7 @@ function SearchBar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [url]);
 
+
     return (
     <div className="search">
             <Link to='/'>
@@ -86,13 +87,13 @@ function SearchBar() {
         }
         
         <div className={classes.toolbar} >
-            {url.pathname === '/' ? <> { user?.result ? (
+            { user?.result ? (
                 <div className={classes.profile}>
                     <Avatar className={`${classes.purple} ${classes.typography}`} alt={user?.result.name} src={user?.result.imageUrl}>
                         {user?.result.name.charAt(0)}
                     </Avatar>
                     <Typography className={`${classes.userName} ${classes.typography}`} >
-                        {user?.result.name}
+                        Hola, {user?.result.name.split(' ')[0]}!
                     </Typography>
                     <button className='login' onClick={logout} >CERRAR SESIÓN</button>
                 </div>
@@ -100,7 +101,7 @@ function SearchBar() {
                 <Link to='/auth'>
                     <button type='button' className='login' >INGRESAR</button>
                 </Link>
-            )} </> : null}
+            )}
         </div>
     </div>
     )
