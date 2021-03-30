@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Post from './Post/Post';
 
-import { Grid, CircularProgress } from '@material-ui/core';
+import { Grid, CircularProgress, Box, Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 import { useSelector } from 'react-redux';
 
@@ -13,17 +14,38 @@ const Posts = ({ setCurrentId }) => {
 
     const posts = useSelector((state) => state.posts);         // From reducers/index.js
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postPerPage, setpostPerPage] = useState(10);
+
+    const list = posts.map((post) => (
+        <Grid item key={post._id} xs={12} sm={6} >
+            <Post post={post} setCurrentId={setCurrentId} />
+        </Grid>
+    ));
+
+
     console.log(posts);
+
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    const currentPosts = list.slice(indexOfFirstPost, indexOfLastPost);
 
     return (
         !posts.length ? <CircularProgress className={classes.circular} size='3.4rem' /> : (
+            <>
             <Grid className={classes.container} container alignItems='stretch' spacing={3} >
-                {posts.map((post) => (
-                    <Grid item key={post._id} xs={12} sm={6} >
-                        <Post post={post} setCurrentId={setCurrentId} />
-                    </Grid>
-                ))}
+                {currentPosts}
             </Grid>
+            <Grid container justify='center' className={`${classes.pagination}`}>
+                <Button variant='contained' className={`${classes.pagButton} ${classes.typography}`} onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 1}>
+                    <Typography>ANTERIOR</Typography>
+                </Button>
+                <Box m={2}>{currentPage} </Box>
+                <Button variant='contained' className={`${classes.pagButton} ${classes.typography}`} onClick={() => setCurrentPage(currentPage + 1)} disabled={(currentPosts.length < 10) || (posts.length == currentPage * postPerPage)}>
+                    <Typography>SIGUIENTE</Typography>
+                </Button>
+            </Grid>
+            </>
         )
     );
 }
