@@ -37,11 +37,11 @@ const Posts = ({ setCurrentId }) => {
                 {currentPosts}
             </Grid>
             <Grid container justify='center' className={`${classes.pagination}`}>
-                <Button variant='contained' className={`${classes.pagButton} ${classes.typography}`} onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 1}>
+                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography}`} onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 1}>
                     <Typography>ANTERIOR</Typography>
                 </Button>
-                <Box m={2}>{currentPage} </Box>
-                <Button variant='contained' className={`${classes.pagButton} ${classes.typography}`} onClick={() => setCurrentPage(currentPage + 1)} disabled={(currentPosts.length < 10) || (posts.length == currentPage * postPerPage)}>
+                <Box m={3}> <Typography className={classes.cPage}>{currentPage}</Typography> </Box>
+                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography}`} onClick={() => setCurrentPage(currentPage + 1)} disabled={(currentPosts.length < 10) || (posts.length == currentPage * postPerPage)}>
                     <Typography>SIGUIENTE</Typography>
                 </Button>
             </Grid>
