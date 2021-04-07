@@ -56,7 +56,7 @@ const Form = ({ currentId, setCurrentId }) => {
         return (
             <Paper className={classes.paper}>
                 <Typography variant='h6' align='center'>
-                    <Link to='/auth'>Logueate</Link> para crear Momentazos y likear los Momentazos de otras personas!
+                    <Link className='log' to='/auth'>Logueate</Link> para crear Momentazos y likear los Momentazos de otras personas!
                 </Typography>
             </Paper>
         )
