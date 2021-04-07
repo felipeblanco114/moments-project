@@ -26,17 +26,21 @@ export default makeStyles((theme) => ({
   circular: {
     marginLeft: '50%',
     marginTop: '4rem',
-    color: 'white'
+    color: 'black'
   },
   pagination: {
     marginTop: '2.6rem',
+    paddingBottom: '5rem'
   },
   pagButton: {
-    color: 'rgba(50, 78, 128)',
-    backgroundColor: 'rgb(255, 220, 255, 0.8)',
-    fontWeight: 'bold'
+    color: 'black',
+    backgroundColor: 'rgb(255, 255, 255, 0.8)',
+    fontWeight: 'bold',
+    height: '2rem',
+    position: 'relative',
+    marginTop: '1.2rem'
   },
   cPage: {
-    color: 'rgb(255,225, 255)'
+    color: 'black'
   }
 }));

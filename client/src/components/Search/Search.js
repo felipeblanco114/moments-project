@@ -69,7 +69,15 @@ const Search = () => {
                 ))}
                     
                 </Grid>
-            </Container> : <Link to='/'> <Typography variant='h5'>Volver a la página principal</Typography> </Link>}
+            </Container> :  
+            <Typography className={classes.back} variant='h5'>
+            <img className={classes.monkeyImg} src='http://assets.stickpng.com/images/5897a709cba9841eabab614e.png' /><br></br>
+                No se han encontrado resultados.<br></br> 
+                <Link to='/' className={classes.back}> 
+                Volver a la página principal.
+                </Link>
+            </Typography> 
+            }
         </Grow>
     )
 }

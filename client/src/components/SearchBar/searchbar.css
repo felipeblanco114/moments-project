@@ -102,8 +102,7 @@ a:visited {
 .search-btn {
     height: 30px;
     width: 30px;
-    background-color: rgba(255, 245, 255);
-    border: .1px solid rgb(238, 238, 238);
+    border: none;
     color: white;
     border-radius: 36px;
     font-weight: bold;
@@ -114,7 +113,6 @@ a:visited {
 }
 .search-btn:hover {
     cursor: pointer;
-    background-color: rgb(36, 44, 48);
 }
 .login {
     background-color: rgb(36, 44, 48);
@@ -129,7 +127,7 @@ a:visited {
 }
 .login:hover {
     color: rgb(36, 44, 48);
-    background-color: rgb(255, 240, 255);
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
 }
 button:focus {outline:0;}
@@ -150,11 +148,13 @@ button:focus {outline:0;}
         margin-top: 8rem;
         position:static;
         margin-left: 2.5rem;
+        border: solid .1px rgb(61, 61, 61);
     }
     .search-btn {
         position: relative;
         top: -2.4rem;
-        left: 19.4rem;
+        left: 19.6rem;
+        border: none;
 
     }
     .logo {

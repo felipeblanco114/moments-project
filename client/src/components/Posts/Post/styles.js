@@ -73,8 +73,5 @@ export default makeStyles({
   edit: {
     marginRight: '-40px',
     padding: '0px 0px 0px 0px',
-  },
-  delete: {
-    color: '#C70025 !important'
   }
 });

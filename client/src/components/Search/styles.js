@@ -29,6 +29,14 @@ export default makeStyles((theme) => ({
       image: {
         marginLeft: '15px',
       },
+      back: {
+        color: 'black !important',
+        textAlign: 'center',
+      },
+      monkeyImg: {
+        width: '10%',
+        height: '10%'
+      },
       [theme.breakpoints.down('sm')] : {
         mainContainer: {
           flexDirection: 'column-reverse',
