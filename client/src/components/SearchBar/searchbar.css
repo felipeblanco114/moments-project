@@ -109,7 +109,7 @@ a:visited {
     font-weight: bold;
     align-items: center;
     transition: 0.2s;
-    margin-left: -2rem;
+    margin-left: -2.2rem;
     margin-top: 5px;
 }
 .search-btn:hover {
@@ -118,10 +118,10 @@ a:visited {
 }
 .login {
     background-color: rgb(36, 44, 48);
-    color: rgb(255, 240, 255);
+    color: rgb(255, 255, 255);
     font-family: 'Roboto', sans-serif;
     padding: .6rem;
-    border: 1px solid rgb(255, 240, 255);
+    border: 1px solid rgb(255, 255, 255);
     border-radius: .5rem;
     transition: .2s;
     font-weight: bold;
@@ -154,7 +154,7 @@ button:focus {outline:0;}
     .search-btn {
         position: relative;
         top: -2.4rem;
-        left: 20.4rem;
+        left: 19.4rem;
 
     }
     .logo {

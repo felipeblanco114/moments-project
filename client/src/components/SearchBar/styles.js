@@ -44,7 +44,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     fontSize: '1.1rem',
-    color: 'rgb(255, 245, 255)',
+    color: 'rgb(255, 255, 255)',
     // cursor: 'pointer',
     marginLeft: '.8rem',
     fontWeight: '500',
