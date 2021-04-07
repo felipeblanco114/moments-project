@@ -8,6 +8,7 @@ import Input from './Input';
 import Icon from './icon';
 import { useHistory } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
+import './styles.css';
 
 const Auth = () => {
 
@@ -66,7 +67,7 @@ const Auth = () => {
     return (
         <Container component='main' maxWidth='xs' >
             <Paper className={classes.paper} elevation={3}>
-                <Avatar className={classes.avatar}>
+                <Avatar className={`${classes.avatar} ${'avatar'}`}>
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography className={classes.typography} variant='h5'> { isSignup ? 'Registrarse' : 'Ingresar'} </Typography>
@@ -84,14 +85,14 @@ const Auth = () => {
                         <Input name='password' label='Contraseña' handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
                         { isSignup && <Input name='confirmPassword' label='Repetir contraseña' handleChange={handleChange} type='password' />}
                     </Grid>
-                    <Button type='submit' variant='contained' fullWidth color='primary' className={`${classes.submit} ${classes.typography}`}>
+                    <Button type='submit' variant='contained' fullWidth className={`${classes.submit} ${classes.typography} ${'submit'}`}>
                         { isSignup ? 'Registrarse' : 'Ingresar'}
                     </Button>
                     <GoogleLogin
                         clientId="873031440377-0cr7ddftsa6rvsen611ndlimm430l853.apps.googleusercontent.com" 
                         render={(renderProps) => (
                             <Button 
-                                className={`${classes.googleButton} ${classes.typography}`}
+                                className={`${classes.googleButton} ${classes.typography} ${'google'}`}
                                 color='primary' 
                                 fullWidth 
                                 onClick={renderProps.onClick} 

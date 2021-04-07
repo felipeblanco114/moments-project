@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <div className='footer'>
             <Link to='/'>
-            <div className='logoF'>
+            <div className={`${'logoF'} ${'hover'}`}>
                 <p className='train'>MOMENTAZOS</p>
             </div>
             </Link>
