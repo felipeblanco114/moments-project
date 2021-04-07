@@ -58,7 +58,7 @@ function SearchBar() {
     <div className="search">
             <Link to='/'>
             <div className='logo'>
-                <p>MOMENTAZOS</p>
+                <p className='train'>MOMENTAZOS</p>
             </div>
             </Link>
         {   !(url.pathname === '/auth') ? 

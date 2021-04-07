@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
+
+.post:hover {
+    background-color: black !important;
+    color: rgb(255, 245, 255);
+}
+.limpiar:hover {
+    background-color: #C70025 !important;
+}
+.momentazo p {
+    font-family: 'Train One', cursive;
+    font-size: 1.5rem;
+    position: relative;
+    left: -1rem;
+}

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
 
 import useStyles from './styles';
+import './styles.css';
 
 const Form = ({ currentId, setCurrentId }) => {
 
@@ -64,8 +65,8 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
         <Paper className={classes.paper} >
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit} >
-                <Typography variant='h6' className={classes.typography} >
-                    {currentId ? 'Edita' : 'Postea'} tu Momentazo
+                <Typography variant='h6' className={`${classes.typography} ${'momentazo'}`} >
+                    {currentId ? 'Edita' : 'Postea'} tu <p>Momentazo</p>
                 </Typography>
                 <TextField
                     name='title' 
@@ -100,10 +101,10 @@ const Form = ({ currentId, setCurrentId }) => {
                         onDone={({base64}) => setPostData({ ...postData, selectedFile: base64 })}
                     />
                 </div>
-                <Button className={`${classes.buttonSubmit} ${classes.typography}`} variant='contained' size='large' type='submit' fullWidth>
+                <Button className={`${classes.buttonSubmit} ${classes.typography} ${'post'}`} variant='contained' size='large' type='submit' fullWidth>
                     Postear
                 </Button>
-                <Button className={`${classes.clean} ${classes.typography}`} variant='contained' size='small' onClick={clear} fullWidth>
+                <Button className={`${classes.clean} ${classes.typography} ${'limpiar'}`} variant='contained' size='small' onClick={clear} fullWidth>
                     Limpiar
                 </Button>
             </form>

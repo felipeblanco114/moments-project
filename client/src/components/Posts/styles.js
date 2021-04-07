@@ -33,7 +33,8 @@ export default makeStyles((theme) => ({
   },
   pagButton: {
     color: 'rgba(50, 78, 128)',
-    backgroundColor: 'rgb(255, 220, 255, 0.8)'
+    backgroundColor: 'rgb(255, 220, 255, 0.8)',
+    fontWeight: 'bold'
   },
   cPage: {
     color: 'rgb(255,225, 255)'

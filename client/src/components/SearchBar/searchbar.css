@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,400;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
 
 input:focus {outline:0;}
 a {
     text-decoration: none;
     outline: none;
-    color: rgb(35, 86, 138, 0.5);
+    color: rgb(255, 245, 255);
 }
 a:visited {
-    color: rgba(18, 71, 124);
+    color: rgb(255, 245, 255);
 }
 .logo img {
     width: 120px;
@@ -32,9 +33,15 @@ a:visited {
     top: 17px;
     transition: 0.2s;
     font-family: 'Roboto', sans-serif;
-    color: rgb(35, 86, 138, 0.5);
-    background-color:rgba(242, 223, 245, 0.7);
+    /* color: rgb(35, 86, 138, 0.5); */
+    color: rgb(255, 245, 255);
+    /* background-color:rgba(242, 223, 245, 0.7); */
+    background-color: rgb(36, 44, 48);
     border-radius: .2rem;
+}
+.logo p {
+    font-size: 1.5rem;
+    margin-left: 1.5rem;
 }
 .logo:after, .logo:before {
     content: " ";
@@ -47,14 +54,18 @@ a:visited {
   .logo:after {
     top: -1px;
     left: -1px;
-    border-top: 2px solid rgb(35, 86, 138, 0.5);
-    border-left: 2px solid rgb(35, 86, 138, 0.5);
+    /* border-top: 2px solid rgb(35, 86, 138, 0.5); */
+    border-top: 2px solid rgb(255, 245, 255);
+    /* border-left: 2px solid rgb(35, 86, 138, 0.5); */
+    border-left: 2px solid rgb(255, 245, 255);
   }
   .logo:before {
     bottom: -1px;
     right: -1px;
-    border-bottom: 2px solid rgb(35, 86, 138, 0.5);
-    border-right: 2px solid rgb(35, 86, 138, 0.5);
+    /* border-bottom: 2px solid rgb(35, 86, 138, 0.5);
+    border-right: 2px solid rgb(35, 86, 138, 0.5); */
+    border-bottom: 2px solid rgb(255, 245, 255);
+    border-right: 2px solid rgb(255, 245, 255);
   }
   .logo:hover {
     border-top-right-radius: 0px;
@@ -72,7 +83,8 @@ a:visited {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgba(218, 142, 206, 0.1);
+    /* background-color: rgba(218, 142, 206, 0.1); */
+    background-color: rgb(36, 44, 48);
     height: 70px;
     margin-bottom: 3rem;
 }
@@ -90,8 +102,8 @@ a:visited {
 .search-btn {
     height: 30px;
     width: 30px;
-    background-color: rgba(219, 129, 206, 0.6);
-    border: none;
+    background-color: rgba(255, 245, 255);
+    border: .1px solid rgb(238, 238, 238);
     color: white;
     border-radius: 36px;
     font-weight: bold;
@@ -102,33 +114,33 @@ a:visited {
 }
 .search-btn:hover {
     cursor: pointer;
-    background-color: rgb(3, 79, 157, 0.7);
+    background-color: rgb(36, 44, 48);
 }
 .login {
-    background-color: rgb(3, 79, 157, 0.7);
-    color: rgb(231, 197, 226);
+    background-color: rgb(36, 44, 48);
+    color: rgb(255, 240, 255);
     font-family: 'Roboto', sans-serif;
     padding: .6rem;
-    border: 1px solid rgb(212, 184, 208);
+    border: 1px solid rgb(255, 240, 255);
     border-radius: .5rem;
     transition: .2s;
     font-weight: bold;
     margin-left: auto;
 }
 .login:hover {
-    color: rgb(3, 79, 157, 0.7);
-    background-color: rgb(231, 197, 226, 0.1);
+    color: rgb(36, 44, 48);
+    background-color: rgb(255, 240, 255);
     cursor: pointer;
 }
 button:focus {outline:0;}
+.train {
+    font-family: 'Train One', cursive;
+}
 
 @media (max-width: 680px) {
-    .logo img {
-      display: none;
-    }
     .search {
         height: 100px;
-        background-color:rgba(241, 193, 223, 0.0);
+        /* background-color:rgba(241, 193, 223, 0.0); */
     }
     .search-input {
         width: 100%;
@@ -137,12 +149,12 @@ button:focus {outline:0;}
         display: block;
         margin-top: 8rem;
         position:static;
-        margin-left: 3rem;
+        margin-left: 2.5rem;
     }
     .search-btn {
         position: relative;
         top: -2.4rem;
-        left: 20.3rem;
+        left: 20.4rem;
 
     }
     .logo {

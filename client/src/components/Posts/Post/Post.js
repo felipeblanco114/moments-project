@@ -12,6 +12,7 @@ import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import { deletePost, likePost } from '../../../actions/posts';
 
 import useStyles from './styles';
+import './styles.css'
 
 const Post = ({ post, setCurrentId }) => {
 
@@ -33,7 +34,7 @@ const Post = ({ post, setCurrentId }) => {
     };
 
     return (
-        <Card className={classes.card} >
+        <Card className={`${classes.card} ${'shadow'}`} >
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
             <div className={classes.overlay}>
                 <Typography variant='h6' className={classes.typography} > { post.name } </Typography>
@@ -60,12 +61,12 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography className={`${classes.message} ${classes.typography}`} variant='body1' color='textSecondary' component='p' > { post.message } </Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size='small' color='primary' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))} >
+                <Button size='small' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))} >
                     <Likes />
                 </Button>
                 {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
                     (   
-                    <Button size='small' color='primary' onClick={() => dispatch(deletePost(post._id))} >
+                    <Button size='small' className={classes.delete} onClick={() => dispatch(deletePost(post._id))} >
                         <DeleteIcon fontSize='small' />
                     </Button> 
                     )
