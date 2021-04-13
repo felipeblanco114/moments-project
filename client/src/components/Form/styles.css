@@ -3,6 +3,10 @@
 .log {
     color: black !important;
     font-weight: bold;
+    transition: .2s;
+}
+.log:hover {
+    border-bottom: .1px solid black;
 }
 
 .post:hover {
@@ -15,10 +19,15 @@
 .momentazo p {
     font-family: 'Train One', cursive;
     font-size: 1.5rem;
-    position: relative;
+    /* position: relative;
     left: -1rem;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.4rem; */
 }
 .momentazo {
-    font-family: 'Train One', cursive;
+    margin-top: 1rem;
+    padding-right: 2.5rem;
+}
+.postTitle {
+    
+    padding-left: 2.3rem;
 }

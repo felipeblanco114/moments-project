@@ -16,7 +16,7 @@ const Posts = ({ setCurrentId }) => {
     const posts = useSelector((state) => state.posts);         // From reducers/index.js
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage, setPostPerPage] = useState(10);
+    const [postPerPage, setPostPerPage] = useState(6);
 
     const list = posts.map((post) => (
         <Grid item key={post._id} xs={12} sm={6} >
@@ -42,7 +42,7 @@ const Posts = ({ setCurrentId }) => {
                     <Typography variant='BUTTON'>ANTERIOR</Typography>
                 </Button>
                 <Box m={3}> <Typography className={classes.cPage}>{currentPage}</Typography> </Box>
-                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography} ${'page-btn'}`} onClick={() => setCurrentPage(currentPage + 1)} disabled={(currentPosts.length < 10) || (posts.length == currentPage * postPerPage)}>
+                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography} ${'page-btn'}`} onClick={() => setCurrentPage(currentPage + 1)} disabled={(currentPosts.length < postPerPage) || (posts.length == currentPage * postPerPage)}>
                     <Typography variant='BUTTON'>SIGUIENTE</Typography>
                 </Button>
             </Grid>

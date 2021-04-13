@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Container, Grow, Grid, Typography } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 
 import { getPosts } from '../../actions/posts'
 import { useDispatch } from 'react-redux';
@@ -17,11 +18,13 @@ const Search = () => {
 
     const [currentId, setCurrentId] = useState(0);
     const posts = useSelector((state) => state.posts);
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getPosts());
+        setLoading(false);
     }, [currentId, dispatch]);
 
     const url = useLocation();
@@ -37,8 +40,9 @@ const Search = () => {
         .replaceAll('%c3%ad', 'i');
     console.log(search);
 
-    console.log(posts.map((post) => post.title.toLowerCase() == search));
-
+    
+    const match = posts.map((post) => post.title.toLowerCase() == search);
+    console.log(match)
     // FILTER
 
     var postTitle = posts.filter((post) => 
@@ -57,6 +61,20 @@ const Search = () => {
 
     console.log(postTitle)
 
+    const LoadingOrNull = () => {
+        if(match == 0) {
+            return <CircularProgress className={classes.circular} size='3.4rem' />
+        } else {
+            return (
+            <Typography className={classes.back} variant='h5'>
+                No se han encontrado resultados.<br></br> 
+                <Link to='/' className={classes.back}> 
+                <strong>Volver a la página principal.</strong>
+                </Link>
+            </Typography> )
+        }
+    }
+
     return (
         <Grow in>
             {postTitle.length ? <Container>
@@ -70,12 +88,7 @@ const Search = () => {
                     
                 </Grid>
             </Container> :  
-            <Typography className={classes.back} variant='h5'>
-                No se han encontrado resultados.<br></br> 
-                <Link to='/' className={classes.back}> 
-                <strong>Volver a la página principal.</strong>
-                </Link>
-            </Typography> 
+            <LoadingOrNull />
             }
         </Grow>
     )

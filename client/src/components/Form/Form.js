@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Typography, TextField, Button, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 
+import swal from 'sweetalert';
+
 import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +12,7 @@ import { createPost, updatePost } from '../../actions/posts';
 
 import useStyles from './styles';
 import './styles.css';
+
 
 const Form = ({ currentId, setCurrentId }) => {
 
@@ -24,12 +27,12 @@ const Form = ({ currentId, setCurrentId }) => {
         tags: '',
         selectedFile: '',
     });
+
     const user = JSON.parse(localStorage.getItem('profile'));
 
     useEffect(() => {
         if(post) setPostData(post)
     }, [post]);
-
     const clear = () => {
         setCurrentId(0);
         setPostData({
@@ -37,17 +40,19 @@ const Form = ({ currentId, setCurrentId }) => {
             message: '',
             tags: '',
             selectedFile: '',
-        })
+        }
+        )
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
         if(currentId === 0) {
             dispatch(createPost({ ...postData, name: user?.result?.name }));
+            swal("¡Buen trabajo!", "¡El post se ha creado exitosamente!", "success");
             clear();
         } else {
             dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+            swal("¡Buen trabajo!", "¡El post se ha editado exitosamente!", "success");
             clear();
         }
     };
@@ -65,9 +70,11 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
         <Paper className={classes.paper} >
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit} >
-                <Typography variant='h6' className={`${classes.typography} ${'momentazo'}`} >
-                    {currentId ? 'Edita' : 'Postea'} tu <p>Momentazo</p>
+                <Typography variant='h6' className={`${classes.typography} ${'postTitle'}`} >
+                    {currentId ? 'Edita' : 'Postea'} tu
                 </Typography>
+                <br/>
+                <Typography className={`${'momentazo'}`}><br/><p>MOMENTAZO</p></Typography>
                 <TextField
                     name='title' 
                     variant='outlined'

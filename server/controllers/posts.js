@@ -6,10 +6,18 @@ import PostMessage from '../models/postMessage.js'
 const router = express.Router();
 
 export const getPosts = async (req, res) => {
+    var origin = req.get('origin');
     try {
-        const postMessages = await PostMessage.find();
+        if(req.query.search){
+            const filterPosts = await PostMessage.find(
+                {"title": req.query.search}
+        );
 
-        res.status(200).json(postMessages);
+        res.status(200).json(filterPosts);
+    } else {
+        const postMessages = await PostMessage.find();
+        res.status(200).json(postMessages)
+    }
     } catch (error) {
         res.status(404).json({ message: error.message });
     }

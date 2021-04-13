@@ -58,8 +58,8 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   purple: {
-    color: 'rgb(3, 79, 157, 0.7)',
-    backgroundColor: 'rgb(218, 161, 209, 0.3)',
+    color: 'rgb(199,0,37)',
+    backgroundColor: 'rgb(255, 255, 255)',
     width: '1.9rem',
     height: '1.9rem',
     // border: 'solid .2rem rgb(3, 79, 157, 0.7)',

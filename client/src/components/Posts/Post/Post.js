@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 
+import swal from 'sweetalert';
+
 import { deletePost, likePost } from '../../../actions/posts';
 
 import useStyles from './styles';
@@ -18,7 +20,7 @@ const Post = ({ post, setCurrentId }) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('profile'));
+    const user = JSON.parse(localStorage.getItem('profile'))
 
     const Likes = () => {
         if (post.likes.length > 0) {
@@ -67,7 +69,7 @@ const Post = ({ post, setCurrentId }) => {
                 {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
                     (   
                     <Button size='small' onClick={() => dispatch(deletePost(post._id))} >
-                        <DeleteIcon fontSize='small' />
+                        <DeleteIcon fontSize='small' onClick={() => swal("Post borrado", "El post se ha borrado exitosamente", "success")} />
                     </Button> 
                     )
                 }
@@ -75,5 +77,4 @@ const Post = ({ post, setCurrentId }) => {
         </Card>
     )
 }
-
 export default Post;

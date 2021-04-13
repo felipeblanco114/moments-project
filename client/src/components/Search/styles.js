@@ -37,6 +37,11 @@ export default makeStyles((theme) => ({
         width: '10%',
         height: '10%'
       },
+      circular: {
+        marginLeft: '50%',
+        marginTop: '4rem',
+        color: 'black'
+      },
       [theme.breakpoints.down('sm')] : {
         mainContainer: {
           flexDirection: 'column-reverse',
