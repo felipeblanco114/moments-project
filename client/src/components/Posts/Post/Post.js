@@ -37,8 +37,8 @@ const Post = ({ post, setCurrentId }) => {
 
     const deleteWarning = () => {
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            title: "¿Estás seguro de eliminar este post?",
+            text: "Una vez que lo elimines ya no lo podrás recuperar",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -46,11 +46,11 @@ const Post = ({ post, setCurrentId }) => {
           .then((willDelete) => {
             if (willDelete) {
                 dispatch(deletePost(post._id));
-              swal("Poof! Your imaginary file has been deleted!", {
+              swal("¡Poof! El post se ha eliminado correctamente", {
                 icon: "success",
               });
             } else {
-              swal("Your imaginary file is safe!");
+              swal("¡Tu post está a salvo!");
             }
           });
     }
