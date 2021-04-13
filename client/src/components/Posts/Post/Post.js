@@ -35,6 +35,26 @@ const Post = ({ post, setCurrentId }) => {
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Me gusta</>;
     };
 
+    const deleteWarning = () => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                dispatch(deletePost(post._id));
+              swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+              });
+            } else {
+              swal("Your imaginary file is safe!");
+            }
+          });
+    }
+
     return (
         <Card className={`${classes.card} ${'shadow'}`} >
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
@@ -68,8 +88,8 @@ const Post = ({ post, setCurrentId }) => {
                 </Button>
                 {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
                     (   
-                    <Button size='small' onClick={() => dispatch(deletePost(post._id))} >
-                        <DeleteIcon fontSize='small' onClick={() => swal("Post borrado", "El post se ha borrado exitosamente", "success")} />
+                    <Button size='small' onClick={() => deleteWarning()} >
+                        <DeleteIcon fontSize='small' />
                     </Button> 
                     )
                 }
