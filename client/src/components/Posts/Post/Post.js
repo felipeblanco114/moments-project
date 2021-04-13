@@ -49,8 +49,6 @@ const Post = ({ post, setCurrentId }) => {
               swal("¡Poof! El post se ha eliminado correctamente", {
                 icon: "success",
               });
-            } else {
-              swal("¡Tu post está a salvo!");
             }
           });
     }

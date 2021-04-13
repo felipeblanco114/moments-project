@@ -5,6 +5,8 @@ import useStyles from './styles';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import swal from 'sweetalert';
+
 import decode from 'jwt-decode';
 
 import './searchbar.css';
@@ -19,11 +21,28 @@ function SearchBar() {
     const dispatch = useDispatch();
 
     const logout = () => {
-        dispatch({ type: 'LOGOUT' });
+        swal({
+            title: "¿Estás seguro de salir de tu cuenta?",
+            text: "¡Podrás volver cuando quieras!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                dispatch({ type: 'LOGOUT' });
+                history.push('/');
+                setUser(null);
+              swal("Te has deslogueado exitosamente", {
+                icon: "success",
+              });
+            }
+          });
+        // dispatch({ type: 'LOGOUT' });
 
-        history.push('/');
+        // history.push('/');
 
-        setUser(null);
+        // setUser(null);
     }
 
     const [search, setSearch] = useState();
