@@ -33,9 +33,6 @@ function SearchBar() {
                 dispatch({ type: 'LOGOUT' });
                 history.push('/');
                 setUser(null);
-              swal("Te has deslogueado exitosamente", {
-                icon: "success",
-              });
             }
           });
         // dispatch({ type: 'LOGOUT' });
@@ -43,6 +40,14 @@ function SearchBar() {
         // history.push('/');
 
         // setUser(null);
+    }
+
+    const TokenExpired = () => {
+        dispatch({ type: 'LOGOUT' });
+
+        history.push('/');
+
+        setUser(null);
     }
 
     const [search, setSearch] = useState();
@@ -66,12 +71,13 @@ function SearchBar() {
         if (token) {
             const decodedToken = decode(token)
 
-            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+            if (decodedToken.exp * 1000 < new Date().getTime()) TokenExpired();
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [url]);
 
+    const emailUsername = user?.result?.email.split('@')[0];
 
     return (
     <div className="search">
@@ -108,9 +114,11 @@ function SearchBar() {
         <div className={classes.toolbar} >
             { user?.result ? (
                 <div className={classes.profile}>
+                    <Link to={`/user/${emailUsername}`}>
                     <Avatar className={`${classes.purple} ${classes.typography}`} alt={user?.result.name} src={user?.result.imageUrl}>
                         {user?.result.name.charAt(0)}
                     </Avatar>
+                    </Link>
                     <Typography className={`${classes.userName} ${classes.typography}`} >
                         Hola, {user?.result.name.split(' ')[0]}!
                     </Typography>

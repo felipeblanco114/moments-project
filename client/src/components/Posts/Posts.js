@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Post from './Post/Post';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import { Grid, CircularProgress, Box, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';

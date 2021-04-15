@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.card {
+    background-color: rgb(252, 252, 252);
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20rem;
+    box-shadow: 4px 7px 9px 2px rgba(0,0,0,0.18);
+    -webkit-box-shadow: 4px 7px 9px 2px rgba(0,0,0,0.18);
+    -moz-box-shadow: 4px 7px 9px 2px rgba(0,0,0,0.18);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    height: 13rem;
+}
+.card h5 {
+    color: rgb(100, 100, 100);
+    margin-top: 2rem;
+}
+.card-header {
+    position: relative;
+    height: 48px;
+}
+.card-body {
+    margin-top: 2rem;
+}
+
+.avatarUser {
+    color: rgb(199,0,37) !important;
+    background-color: rgb(43, 46, 42) !important;
+    width: 84px !important;
+    height: 84px !important;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 6px rgb(252, 252, 252) solid;
+    box-shadow: 0px 0px 10px rgba(0,0,0, 0.1);
+}
