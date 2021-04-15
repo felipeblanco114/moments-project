@@ -70,11 +70,13 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
         <Paper className={classes.paper} >
             <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit} >
-                <Typography variant='h6' className={`${classes.typography} ${'postTitle'}`} >
-                    {currentId ? 'Edita' : 'Postea'} tu
-                </Typography>
-                <br/>
-                <Typography className={`${'momentazo'}`}><br/><p>MOMENTAZO</p></Typography>
+                <div className='form-head'>
+                    <Typography variant='h6' className={`${classes.typography} ${'post-head'}`} >
+                        {currentId ? 'Edita' : 'Postea'} tu
+                    </Typography>
+                    <br/>
+                    <Typography className={`${'momentazo'}`}><br/><p>MOMENTAZO</p></Typography>
+                </div>
                 <TextField
                     name='title' 
                     variant='outlined'

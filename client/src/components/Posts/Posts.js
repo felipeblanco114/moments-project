@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import Post from './Post/Post';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
+
 import { Grid, CircularProgress, Box, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
@@ -20,9 +22,11 @@ const Posts = ({ setCurrentId }) => {
     const [postPerPage, setPostPerPage] = useState(6);
 
     const list = posts.map((post) => (
-        <Grid item key={post._id} xs={12} sm={6} >
-            <Post post={post} setCurrentId={setCurrentId} />
-        </Grid>
+        <LazyLoadComponent>
+            <Grid item key={post._id} xs={12} sm={6} >
+                <Post post={post} setCurrentId={setCurrentId} />
+            </Grid>
+        </LazyLoadComponent>
     ));
 
 

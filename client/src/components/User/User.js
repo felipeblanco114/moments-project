@@ -19,7 +19,7 @@ const User = () => {
             </div>
             <div className='card-body'>
                 <h3 className='fullname'>
-                    {user?.result?.name}
+                    {user?.result?.name.toUpperCase()}
                 </h3>
                 <h5 className='email'>
                     {user?.result?.email}

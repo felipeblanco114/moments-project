@@ -120,7 +120,7 @@ function SearchBar() {
                     </Avatar>
                     </Link>
                     <Typography className={`${classes.userName} ${classes.typography}`} >
-                        Hola, {user?.result.name.split(' ')[0]}!
+                        Hola, <Link to={`/user/${emailUsername}`}>&nbsp;{user?.result.name.split(' ')[0]}!</Link>
                     </Typography>
                     <button className='login' onClick={logout} >CERRAR SESIÓN</button>
                 </div>

@@ -134,6 +134,19 @@ button:focus {outline:0;}
 .train {
     font-family: 'Train One', cursive;
 }
+.swal-overlay {
+    background-color: rgba(0, 0, 0, .7);
+}
+.swal-modal {
+    font-family: 'Roboto', sans-serif;
+}
+
+.swal-footer {
+    background-color: rgb(245, 248, 250);
+    margin-top: 32px;
+    border-top: 1px solid #E9EEF1;
+    overflow: hidden;
+  }
 
 @media (max-width: 680px) {
     .search {

@@ -19,15 +19,15 @@
 .momentazo p {
     font-family: 'Train One', cursive;
     font-size: 1.5rem;
+    margin-top: -2.5rem;
     /* position: relative;
     left: -1rem;
     margin-bottom: 1.4rem; */
 }
-.momentazo {
-    margin-top: 1rem;
-    padding-right: 2.5rem;
+.form-head {
+    margin-left: auto;
+    margin-right: auto;
 }
-.postTitle {
-    
-    padding-left: 2.3rem;
+.post-head {
+    padding-left: 2.2rem;
 }
