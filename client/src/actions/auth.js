@@ -1,5 +1,7 @@
 import * as api from '../api';      // Import everything from api/index.js
 import { AUTH } from '../constants/actionTypes';
+
+import swal from 'sweetalert';
 // ACTIONS CREATORS => FUNCTIONS that return ACTIONS => ACTION it's an OBJECT that has TYPE and PAYLOAD
 
 export const signin = (formData, history) => async (dispatch) => {
@@ -11,6 +13,11 @@ export const signin = (formData, history) => async (dispatch) => {
         history.push('/');
     } catch (error) {
         console.log(error);
+        swal({
+            title: "El usuario y la contraseña no coinciden",
+            text: `${error}`,
+            icon: "warning"
+        });
     }
 };
 
