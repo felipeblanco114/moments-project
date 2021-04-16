@@ -2,3 +2,9 @@
     color: white !important;
     background-color: black !important;
 }
+@media (max-width: 680px) {
+    .page-btn:hover {
+        color: black !important;
+        background-color: white !important;
+    }
+}

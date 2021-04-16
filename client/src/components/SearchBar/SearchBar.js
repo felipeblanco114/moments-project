@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Typography, Avatar } from '@material-ui/core';
 import useStyles from './styles';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import swal from 'sweetalert';
 
@@ -19,6 +19,8 @@ function SearchBar() {
     const [disabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();
+
+    const posts = useSelector((state) => state.posts);
 
     const logout = () => {
         swal({
@@ -80,6 +82,8 @@ function SearchBar() {
     const emailUsername = user?.result?.email.split('@')[0];
     const userUrl = url.pathname.split('/').includes('user');
 
+    const avatarFilter = posts.filter((post) => user?.result.email == post.email);
+
     return (
     <div className="search">
             <Link to='/'>
@@ -116,7 +120,7 @@ function SearchBar() {
             { user?.result ? (
                 <div className={classes.profile}>
                     <Link to={`/user/${emailUsername}`}>
-                    <Avatar className={`${classes.purple} ${classes.typography}`} alt={user?.result.name} src={user?.result.imageUrl}>
+                    <Avatar className={`${classes.purple} ${classes.typography}`} alt={user?.result.name} src={user?.result.imageUrl ? user?.result.imageUrl : avatarFilter[0]?.selectedFile}>
                         {user?.result.name.charAt(0)}
                     </Avatar>
                     </Link>

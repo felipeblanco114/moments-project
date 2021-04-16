@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { Avatar, Grid, CircularProgress } from '@material-ui/core';
 import './styles.css';
+import { getPosts } from '../../actions/posts'
 import { filterPosts } from '../../api';
 import Post from '../Posts/Post/Post';
+import { useDispatch } from 'react-redux';
 
 
 const User = () => {
@@ -12,11 +14,17 @@ const User = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const [currentId, setCurrentId] = useState(0);
+    const dispatch = useDispatch();
 
     const url = useLocation().pathname;
     const userNameEmail = url.split('/').pop();
     const userEmail = userNameEmail + '@gmail.com'
     console.log(userEmail);
+
+    useEffect(() => {
+        dispatch(getPosts());
+        // setLoading(false);
+    }, [currentId, dispatch]);
     
 
     const posts = useSelector((state) => state.posts);
@@ -30,8 +38,9 @@ const User = () => {
         <div className='grid-users'>
             <div className='card'>
                 <div className='card-header'>
-                    <Avatar className='avatarUser' alt={user?.result.name} src={user?.result.imageUrl}>
+                    <Avatar className='avatarUser' alt={user?.result.name} src={user?.result.imageUrl ? user?.result.imageUrl : userFilter[0]?.selectedFile}>
                         {user?.result.name.charAt(0)}
+                
                     </Avatar>
                 </div>
                 <div className='card-body'>
@@ -52,12 +61,12 @@ const User = () => {
                 </div>
             </div>
             <div className='grid-posts'>
-            {userFilter.map((post) => (
-                    <Grid item key={post._id} >
-                        <div className='singular-post'>
-                            <Post post={post} setCurrentId={setCurrentId} />
-                        </div>
-                    </Grid>
+                {userFilter.map((post) => (
+                        <Grid item key={post._id} >
+                            <div className='singular-post'>
+                                <Post post={post} setCurrentId={setCurrentId} />
+                            </div>
+                        </Grid>
                 ))}
             </div>
         </div>
