@@ -47,11 +47,11 @@ const Form = ({ currentId, setCurrentId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(currentId === 0) {
-            dispatch(createPost({ ...postData, name: user?.result?.name }));
+            dispatch(createPost({ ...postData, name: user?.result?.name, email: user?.result?.email }));
             swal("¡Buen trabajo!", "¡El post se ha creado exitosamente!", "success");
             clear();
         } else {
-            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, email: user?.result?.email }));
             swal("¡Buen trabajo!", "¡El post se ha editado exitosamente!", "success");
             clear();
         }

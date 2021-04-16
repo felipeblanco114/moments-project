@@ -25,7 +25,7 @@ const App = () => {
                     <Route path='/' exact component={Home} />
                     <Route path='/auth' exact component={Auth} />
                     <Route path='/search' component={Search} />
-                    <Route path='/user' component={User} />
+                    <Route path='/user/:emailUsername' component={User} />
                 </Switch>
             </Container>
             <Footer />

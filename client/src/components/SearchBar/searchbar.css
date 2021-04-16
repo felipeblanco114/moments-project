@@ -82,7 +82,7 @@ a:visited {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     /* background-color: rgba(218, 142, 206, 0.1); */
     background-color: rgb(36, 44, 48);
     height: 70px;
@@ -123,7 +123,7 @@ a:visited {
     border-radius: .2rem;
     transition: .2s;
     font-weight: bold;
-    margin-left: auto;
+    margin-left: 2rem;
 }
 .login:hover {
     color: rgb(36, 44, 48);
@@ -177,6 +177,6 @@ button:focus {outline:0;}
         display: none;
     }
     .login {
-        margin-right: 1rem;
+        margin-left: 4.2rem;
     }
   }

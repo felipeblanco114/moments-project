@@ -29,10 +29,9 @@ export default makeStyles((theme) => ({
     marginLeft: '15px',
   },
   toolbar: {
-    marginLeft: '2rem',
     display: 'flex',
-    justifyContent: 'flex-end',
     width: '400px',
+    mariginRight: '2rem',
   },
   profile: {
     display: 'flex',

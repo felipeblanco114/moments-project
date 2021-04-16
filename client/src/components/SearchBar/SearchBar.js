@@ -78,6 +78,7 @@ function SearchBar() {
     }, [url]);
 
     const emailUsername = user?.result?.email.split('@')[0];
+    const userUrl = url.pathname.split('/').includes('user');
 
     return (
     <div className="search">
@@ -86,7 +87,7 @@ function SearchBar() {
                 <p className='train'>MOMENTAZOS</p>
             </div>
             </Link>
-        {   !(url.pathname === '/auth') ? 
+        {   !(url.pathname === '/auth' || userUrl) ? 
             <form>
                 <div className='form-box'>
 
