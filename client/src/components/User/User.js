@@ -27,7 +27,7 @@ const User = () => {
     
 
     return ( 
-        <>
+        <div className='grid-users'>
             <div className='card'>
                 <div className='card-header'>
                     <Avatar className='avatarUser' alt={user?.result.name} src={user?.result.imageUrl}>
@@ -42,15 +42,25 @@ const User = () => {
                         {user?.result?.email}
                     </h5>
                 </div>
+                <div className='card-footer'>
+                    <div className='col vr'>
+                        <p><span className='count'>{userFilter.length}&nbsp;</span>{userFilter > 1 ? 'Posts' : 'Post'}</p>
+                    </div>
+                    <div className='col'>
+                        <p><span className='count'>0</span>&nbsp;Followers</p>
+                    </div>
+                </div>
             </div>
-            <div className='posts-user'>
+            <div className='grid-posts'>
             {userFilter.map((post) => (
-                    <Grid item key={post._id} xs={12} sm={6} >
-                        <Post post={post} setCurrentId={setCurrentId} />
+                    <Grid item key={post._id} >
+                        <div className='singular-post'>
+                            <Post post={post} setCurrentId={setCurrentId} />
+                        </div>
                     </Grid>
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 
