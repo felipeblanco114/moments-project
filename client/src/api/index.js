@@ -22,3 +22,7 @@ export const filterPosts = () => API.get('/posts/search')
 
 export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);
+
+// User
+
+export const getUser = (id) => API.get(`/user/${id}`);

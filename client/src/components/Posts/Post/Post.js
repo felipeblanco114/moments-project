@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 
+import { Link } from 'react-router-dom';
+
 import swal from 'sweetalert';
 
 import { deletePost, likePost } from '../../../actions/posts';
@@ -57,7 +59,7 @@ const Post = ({ post, setCurrentId }) => {
         <Card className={`${classes.card} ${'shadow'}`} >
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
             <div className={classes.overlay}>
-                <Typography variant='h6' className={classes.typography} > { post.name } </Typography>
+                <Typography variant='h6' className={classes.typography} ><Link to={`/user/${post.creator}`}>{ post.name }</Link> </Typography>
                 <Typography variant='body2'> { moment(post.createdAt).locale('es').fromNow() } </Typography>
             </div>
             {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&

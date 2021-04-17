@@ -79,7 +79,9 @@ function SearchBar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [url]);
 
-    const emailUsername = user?.result?.email.split('@')[0];
+    // const emailUsername = user?.result?.email.split('@')[0];
+    console.log(user?.result)
+    const id = user?.result?.googleId ? user?.result?.googleId : user?.result?._id;
     const userUrl = url.pathname.split('/').includes('user');
 
     const avatarFilter = posts.filter((post) => user?.result.email == post.email);
@@ -119,13 +121,13 @@ function SearchBar() {
         <div className={classes.toolbar} >
             { user?.result ? (
                 <div className={classes.profile}>
-                    <Link to={`/user/${emailUsername}`}>
+                    <Link to={`/user/${id}`}>
                     <Avatar className={`${classes.purple} ${classes.typography}`} alt={user?.result.name} src={user?.result.imageUrl ? user?.result.imageUrl : avatarFilter[0]?.selectedFile}>
                         {user?.result.name.charAt(0)}
                     </Avatar>
                     </Link>
                     <Typography className={`${classes.userName} ${classes.typography}`} >
-                        Hola, <Link to={`/user/${emailUsername}`}>&nbsp;{user?.result.name.split(' ')[0]}!</Link>
+                        Hola, <Link to={`/user/${id}`}>&nbsp;{user?.result.name.split(' ')[0]}!</Link>
                     </Typography>
                     <button className='login' onClick={logout} >CERRAR SESIÓN</button>
                 </div>

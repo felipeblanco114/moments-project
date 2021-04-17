@@ -7,48 +7,78 @@ import { getPosts } from '../../actions/posts'
 import { filterPosts } from '../../api';
 import Post from '../Posts/Post/Post';
 import { useDispatch } from 'react-redux';
+import { getUser } from '../../actions/user';
 
 
 const User = () => {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
+    const [users, setUsers] = useState(null);
+    console.log(users)
+
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
 
     const url = useLocation().pathname;
-    const userNameEmail = url.split('/').pop();
-    const userEmail = userNameEmail + '@gmail.com'
-    console.log(userEmail);
+    const id = url.split('/').pop();
+    // const userEmail = userNameEmail + '@gmail.com'
+    // console.log(userEmail);
+
+    const fetchUser = () => {
+        fetch(`http://localhost:5000/user/${id}`)
+        .then(response => {
+           return response.json();
+         })
+        .then(data => {
+           setUsers(data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    };
+
+    // fetch(`http://localhost:5000/user/${id}`)
+    // .then(response => {
+    //     return response.json();
+    // })
+    // .then(data => {
+    //     console.log(data);
+    // })
+    // .catch(error => {
+    //     console.log(error);
+    // })
 
     useEffect(() => {
         dispatch(getPosts());
         // setLoading(false);
     }, [currentId, dispatch]);
-    
+    useEffect(() => {
+        fetchUser();
+    }, [url]);
+
+
 
     const posts = useSelector((state) => state.posts);
-    console.log(posts.email);
 
-    const userFilter = posts.filter((post) => post.email == userEmail);
-    console.log(userFilter);
+
+    const userFilter = posts.filter((post) => post.creator == id);
     
 
     return ( 
         <div className='grid-users'>
             <div className='card'>
                 <div className='card-header'>
-                    <Avatar className='avatarUser' alt={user?.result.name} src={user?.result.imageUrl ? user?.result.imageUrl : userFilter[0]?.selectedFile}>
-                        {user?.result.name.charAt(0)}
-                
+                    <Avatar className='avatarUser' alt={users?.name} src={userFilter[0]?.selectedFile}>
+                        {users?.name?.charAt(0) ? users?.name?.charAt(0) : 'Google User'.charAt(0)}
                     </Avatar>
                 </div>
                 <div className='card-body'>
                     <h3 className='fullname'>
-                        {user?.result?.name.toUpperCase()}
+                        {users?.name?.toUpperCase() ? users?.name?.toUpperCase() : userFilter[0]?.name?.toUpperCase() || 'Usuario de Google sin publicaciones' }
                     </h3>
                     <h5 className='email'>
-                        {user?.result?.email}
+                        {users?.email ? users.email : userFilter[0]?.email || 'Google User'}
                     </h5>
                 </div>
                 <div className='card-footer'>
@@ -73,4 +103,4 @@ const User = () => {
     )
 }
 
-export default User
+export default User;
