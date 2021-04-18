@@ -15,7 +15,6 @@ const User = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const [users, setUsers] = useState(null);
-    console.log(users)
 
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
@@ -23,7 +22,6 @@ const User = () => {
     const url = useLocation().pathname;
     const id = url.split('/').pop();
     // const userEmail = userNameEmail + '@gmail.com'
-    // console.log(userEmail);
 
     const fetchUser = () => {
         fetch(`http://localhost:5000/user/${id}`)
@@ -38,21 +36,11 @@ const User = () => {
         })
     };
 
-    // fetch(`http://localhost:5000/user/${id}`)
-    // .then(response => {
-    //     return response.json();
-    // })
-    // .then(data => {
-    //     console.log(data);
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    // })
-
     useEffect(() => {
         dispatch(getPosts());
         // setLoading(false);
     }, [currentId, dispatch]);
+
     useEffect(() => {
         fetchUser();
     }, [url]);
@@ -69,9 +57,15 @@ const User = () => {
         <div className='grid-users'>
             <div className='card'>
                 <div className='card-header'>
+                    { user?.result?.googleId == id ?
+                    <Avatar className='avatarUser' alt={users?.name} src={user?.result.imageUrl}>
+                        {users?.name?.charAt(0) ? users?.name?.charAt(0) : 'Google User'.charAt(0)}
+                    </Avatar>
+                    :   
                     <Avatar className='avatarUser' alt={users?.name} src={userFilter[0]?.selectedFile}>
                         {users?.name?.charAt(0) ? users?.name?.charAt(0) : 'Google User'.charAt(0)}
                     </Avatar>
+                    }
                 </div>
                 <div className='card-body'>
                     <h3 className='fullname'>
