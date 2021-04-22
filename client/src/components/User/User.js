@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { Avatar, Grid, CircularProgress } from '@material-ui/core';
 import './styles.css';
-import { getPosts } from '../../actions/posts'
-import { filterPosts } from '../../api';
 import Post from '../Posts/Post/Post';
 import { useDispatch } from 'react-redux';
-import { getUser, followUser } from '../../actions/user';
+import { followUser } from '../../actions/user';
 
 
 const User = () => {
@@ -19,6 +16,7 @@ const User = () => {
     const [users, setUsers] = useState(null);
 
     const [posts, setPosts] = useState([]);
+    console.log(posts);
 
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
@@ -85,8 +83,8 @@ const User = () => {
     }
 
 
-    return ( 
-        <div className='grid-users'>
+    return ( <>
+        { users === null ? <CircularProgress size='3.4rem' className='circularProgress'/> : <div className='grid-users'>
             <div className='card'>
                 <div className='card-header'>
                     { user?.result?.googleId == id ?
@@ -138,7 +136,8 @@ const User = () => {
                         </Grid>
                 ))}
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 

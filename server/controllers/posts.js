@@ -35,20 +35,6 @@ export const getUserPosts = async (req, res) => {
     }
 }
 
-// export const searchPost = async (req, res) => {
-//     const { creator, title, message } = req.query;
-//     const postSearch = await PostMessage.find(
-//         { creator: creator },
-//         { title: title },
-//         { message: message }
-//     );
-//     try {
-//         res.status(200).json(postSearch);        
-//     } catch (error) {
-//         res.status(404).json({ message: error.message })
-//     }
-// }
-
 export const createPosts = async (req, res) => {
     const post = req.body;
 
@@ -109,11 +95,21 @@ export const likePost = async (req, res) => {
 }
 
 export const filterPosts = async (req, res) => {
-    const { title } = req.query;
-    const posts = await PostMessage.find({ 
-        title: {$regex : `.*${title}.*`}
-    });
-    res.json(posts);
+    const { search } = req.params;
+    try {
+        const posts = await PostMessage.find({ 
+            $or: [
+            { name: {$regex: search, $options: "i"} }, 
+            { title: {$regex: search, $options: "i"}}, 
+            { tags: {$regex: search, $options: "i"}},
+            { email: {$regex: search, $options: "i"} },
+            { message: {$regex: search, $options: "i"} }
+        ]
+        });
+        res.json(posts);
+    } catch (error) {
+        console.log({ message: error })
+    }
 }
 
 export default router;

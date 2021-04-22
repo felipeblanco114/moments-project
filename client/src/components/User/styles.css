@@ -106,6 +106,11 @@
 .follow-btn:active {
     border: solid .1px rgb(36, 44, 48, 0.2);
 }
+.circularProgress {
+    margin-left: 50%;
+    margin-top: 4rem;
+    color: black !important;
+  }
 
 @media (max-width: 680px) {
     .singular-post {

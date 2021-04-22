@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', getPosts);
 router.get('/:id', getUserPosts);
-router.get('/search', filterPosts);
+router.get('/search/:search', filterPosts);
 router.post('/', auth, createPosts);
 router.patch('/:id', auth, updatePost);
 router.delete('/:id', auth, deletePost);
