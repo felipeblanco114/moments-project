@@ -100,7 +100,7 @@ const Auth = () => {
                                 startIcon={<Icon />} 
                                 variant='contained'
                             >
-                                Ingresar con Google
+                                Ingresar con Google <br/> (No recomendado)
                             </Button>
                         )}
                         onSuccess={googleSuccess}

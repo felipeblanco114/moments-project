@@ -73,5 +73,9 @@ export default makeStyles({
   edit: {
     marginRight: '-40px',
     padding: '0px 0px 0px 0px',
+  },
+  email: {
+    fontSize: '.6rem',
+    marginTop: '-0.2rem'
   }
 });

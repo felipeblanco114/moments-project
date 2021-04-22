@@ -80,7 +80,6 @@ function SearchBar() {
     }, [url]);
 
     // const emailUsername = user?.result?.email.split('@')[0];
-    console.log(user?.result)
     const id = user?.result?.googleId ? user?.result?.googleId : user?.result?._id;
     const userUrl = url.pathname.split('/').includes('user');
 

@@ -74,6 +74,39 @@
     display: flex;
     flex-direction: column;
 }
+.user-posts-card {
+    height: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgb(244, 244,244);
+    padding: 10px 10px;
+    padding-bottom: 0px;
+}
+.col .count {
+    font-weight: 600;
+}
+.google-user-followers {
+    font-size: .77rem;
+    -webkit-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;      
+    user-select: none; 
+}
+.follow-btn {
+    margin-top: 1.2rem;
+    padding: .7rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(250, 250, 250);
+    color: rgb(36, 44, 48);
+    border: 1px solid rgb(244, 244,244);
+    cursor: pointer;
+    font-size: .9rem;
+    border-radius: .2rem;
+}
+.follow-btn:active {
+    border: solid .1px rgb(36, 44, 48, 0.2);
+}
+
 @media (max-width: 680px) {
     .singular-post {
         width: 100%;

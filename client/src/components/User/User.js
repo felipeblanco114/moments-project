@@ -7,21 +7,26 @@ import { getPosts } from '../../actions/posts'
 import { filterPosts } from '../../api';
 import Post from '../Posts/Post/Post';
 import { useDispatch } from 'react-redux';
-import { getUser } from '../../actions/user';
+import { getUser, followUser } from '../../actions/user';
 
 
 const User = () => {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
+    // STATES
+
     const [users, setUsers] = useState(null);
+
+    const [posts, setPosts] = useState([]);
 
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
 
     const url = useLocation().pathname;
     const id = url.split('/').pop();
-    // const userEmail = userNameEmail + '@gmail.com'
+
+    // FETCHS
 
     const fetchUser = () => {
         fetch(`http://localhost:5000/user/${id}`)
@@ -36,22 +41,49 @@ const User = () => {
         })
     };
 
-    useEffect(() => {
-        dispatch(getPosts());
-        // setLoading(false);
-    }, [currentId, dispatch]);
+    const fetchPostsUser = () => {
+        fetch(`http://localhost:5000/posts/${id}`)
+        .then(response => {
+           return response.json();
+         })
+        .then(data => {
+           setPosts(data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    };
+
+    // FETCH EFFECT
 
     useEffect(() => {
+        fetchPostsUser();
         fetchUser();
-    }, [url]);
+    }, [currentId, url]);
 
+    // COMPONENTS
 
+    const Follow = () => {
+        if(users?._id){
+        return users.followers.find((follow) => follow === (user?.result?.googleId || user?.result?._id))
+            ? (
+            <div>
+                ✓
+            </div>
+            ) : (
+            <div>
+                Seguir
+            </div>
+            );} else {
+                return <></>
+            }
+    };
+    const BottonFollow = () => {
+        return (user?.result?._id) ?
+                <Follow />
+        : null
+    }
 
-    const posts = useSelector((state) => state.posts);
-
-
-    const userFilter = posts.filter((post) => post.creator == id);
-    
 
     return ( 
         <div className='grid-users'>
@@ -62,30 +94,43 @@ const User = () => {
                         {users?.name?.charAt(0) ? users?.name?.charAt(0) : 'Google User'.charAt(0)}
                     </Avatar>
                     :   
-                    <Avatar className='avatarUser' alt={users?.name} src={userFilter[0]?.selectedFile}>
+                    <Avatar className='avatarUser' alt={users?.name} src={posts[0]?.selectedFile}>
                         {users?.name?.charAt(0) ? users?.name?.charAt(0) : 'Google User'.charAt(0)}
                     </Avatar>
                     }
                 </div>
+                { user?.result?._id === users?._id ? <></>
+                :
+                <button className='follow-btn' onClick={() => dispatch(followUser(users._id, user?.result._id))}>
+                    <BottonFollow />
+                </button>
+                }
                 <div className='card-body'>
                     <h3 className='fullname'>
-                        {users?.name?.toUpperCase() ? users?.name?.toUpperCase() : userFilter[0]?.name?.toUpperCase() || 'Usuario de Google sin publicaciones' }
+                        {users?.name?.toUpperCase() ? users?.name?.toUpperCase() : posts[0]?.name?.toUpperCase() || 'Usuario de Google sin publicaciones' }
                     </h3>
                     <h5 className='email'>
-                        {users?.email ? users.email : userFilter[0]?.email || 'Google User'}
-                    </h5>
+                        {users?.email ? users.email : posts[0]?.email || '-'}
+                    </h5>              
                 </div>
-                <div className='card-footer'>
+                <div className='col user-posts-card'>
+                    <p><span className='count'>{posts.length}&nbsp;</span>{posts > 1 ? 'Posts' : 'Post'}</p>
+                </div>
+                {users?.name ? <div className='card-footer'>
                     <div className='col vr'>
-                        <p><span className='count'>{userFilter.length}&nbsp;</span>{userFilter > 1 ? 'Posts' : 'Post'}</p>
+                        <p><span className='count'>{users?.following.length}</span>&nbsp;Siguiendo</p>
                     </div>
                     <div className='col'>
-                        <p><span className='count'>0</span>&nbsp;Followers</p>
+                        <p><span className='count'>{users?.followers.length}</span>&nbsp;Seguidores</p>
                     </div>
+                </div> :
+                <div className='col'>
+                 <p><span className='google-user-followers'>Los usuarios de Google no pueden tener seguidores</span></p>
                 </div>
+                }
             </div>
             <div className='grid-posts'>
-                {userFilter.map((post) => (
+                {posts.map((post) => (
                         <Grid item key={post._id} >
                             <div className='singular-post'>
                                 <Post post={post} setCurrentId={setCurrentId} />

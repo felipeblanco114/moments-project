@@ -23,6 +23,18 @@ export const getPosts = async (req, res) => {
     }
 }
 
+export const getUserPosts = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const userPosts = await PostMessage.find({
+            creator: id
+        })
+        res.status(200).json(userPosts)
+    } catch (error) {
+        res.status(404).json({ message: error })
+    }
+}
+
 // export const searchPost = async (req, res) => {
 //     const { creator, title, message } = req.query;
 //     const postSearch = await PostMessage.find(

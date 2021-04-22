@@ -48,11 +48,21 @@ const Form = ({ currentId, setCurrentId }) => {
         e.preventDefault();
         if(currentId === 0) {
             dispatch(createPost({ ...postData, name: user?.result?.name, email: user?.result?.email }));
-            swal("¡Buen trabajo!", "¡El post se ha creado exitosamente!", "success");
+            swal({  
+                title: "¡Buen trabajo!",
+                text: "¡El post se ha creado exitosamente!", 
+                type: "success",
+                timer: 1000
+            });
             clear();
         } else {
             dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, email: user?.result?.email }));
-            swal("¡Buen trabajo!", "¡El post se ha editado exitosamente!", "success");
+            swal({  
+                title: "¡Buen trabajo!",
+                text: "¡El post se ha editado exitosamente!", 
+                type: "success",
+                timer: 1000
+            });
             clear();
         }
     };

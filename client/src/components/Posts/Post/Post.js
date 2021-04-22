@@ -50,6 +50,7 @@ const Post = ({ post, setCurrentId }) => {
                 dispatch(deletePost(post._id));
               swal("¡Poof! El post se ha eliminado correctamente", {
                 icon: "success",
+                timer: 1000
               });
             }
           });
@@ -60,6 +61,7 @@ const Post = ({ post, setCurrentId }) => {
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
             <div className={classes.overlay}>
                 <Typography variant='h6' className={classes.typography} ><Link to={`/user/${post.creator}`}>{ post.name }</Link> </Typography>
+                <Typography variant='body2' className={`${classes.typography} ${classes.email}`} > { post.email } </Typography>
                 <Typography variant='body2'> { moment(post.createdAt).locale('es').fromNow() } </Typography>
             </div>
             {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
