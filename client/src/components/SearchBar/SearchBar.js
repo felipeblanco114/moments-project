@@ -79,11 +79,10 @@ function SearchBar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [url]);
 
-    // const emailUsername = user?.result?.email.split('@')[0];
     const id = user?.result?.googleId ? user?.result?.googleId : user?.result?._id;
     const userUrl = url.pathname.split('/').includes('user');
 
-    const avatarFilter = posts.filter((post) => user?.result.email == post.email);
+    const avatarFilter = posts.filter((post) => user?.result.email === post.email);
 
     return (
     <div className="search">
@@ -132,7 +131,7 @@ function SearchBar() {
                 </div>
             ) : (
                 <Link to='/auth'>
-                    <button type='button' className='login' >INGRESAR</button>
+                    <button type='button' className='login-no-user' >INGRESAR</button>
                 </Link>
             )}
         </div>

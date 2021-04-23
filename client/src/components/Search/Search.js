@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Container, Grow, Grid, Typography } from '@material-ui/core';
 import { CircularProgress } from '@material-ui/core';
 
@@ -55,7 +54,7 @@ const Search = () => {
     // COMPONENTS
 
     const LoadingOrNull = () => {
-        if(search?.length === 0) {
+        if(search?.length === 0 && loading === false) {
             return <CircularProgress className={classes.circular} size='3.4rem' />
         } else {
             return (
@@ -69,7 +68,7 @@ const Search = () => {
     }
 
     return (
-        <Grow in>
+            <Grow in className={classes.gridResults}>
             { search?.length ? <Container>
                  <Grid container className={classes.mainContainer} justify='space-between' alignItems='stretch' spacing={3} >
 
@@ -79,7 +78,7 @@ const Search = () => {
                     </Grid>
                 ))}
                     
-                </Grid>
+            </Grid>
             </Container> :  
             <LoadingOrNull />
             }

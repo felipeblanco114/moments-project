@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 
 import { getPosts } from '../../actions/posts'              // Import actions
 import useStyles from './styles';
-import { useLocation } from 'react-router-dom';
 
 const Home = () => {
 

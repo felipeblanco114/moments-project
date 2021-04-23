@@ -1,5 +1,5 @@
 import * as api from '../api';      // Import everything from api/index.js
-import { FETCH_ALL, CREATE, UPDATE, DELETE, FILTER } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
 // ACTIONS CREATORS => FUNCTIONS that return ACTIONS => ACTION it's an OBJECT that has TYPE and PAYLOAD
 
 export const getPosts = () => async (dispatch) => {

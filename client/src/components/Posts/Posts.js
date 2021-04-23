@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Post from './Post/Post';
-import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
@@ -19,7 +18,7 @@ const Posts = ({ setCurrentId }) => {
     const posts = useSelector((state) => state.posts);         // From reducers/index.js
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage, setPostPerPage] = useState(6);
+    const postPerPage = 6;
 
     const list = posts.map((post) => (
         <LazyLoadComponent>
@@ -43,11 +42,11 @@ const Posts = ({ setCurrentId }) => {
                 {currentPosts}
             </Grid>
             <Grid container justify='center' className={`${classes.pagination}`}>
-                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography} ${'page-btn'}`} onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage == 1}>
+                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography} ${'page-btn'}`} onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
                     <Typography variant='BUTTON'>ANTERIOR</Typography>
                 </Button>
                 <Box m={3}> <Typography className={classes.cPage}>{currentPage}</Typography> </Box>
-                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography} ${'page-btn'}`} onClick={() => setCurrentPage(currentPage + 1)} disabled={(currentPosts.length < postPerPage) || (posts.length == currentPage * postPerPage)}>
+                <Button size='small' variant='contained' className={`${classes.pagButton} ${classes.typography} ${'page-btn'}`} onClick={() => setCurrentPage(currentPage + 1)} disabled={(currentPosts.length < postPerPage) || (posts.length === currentPage * postPerPage)}>
                     <Typography variant='BUTTON'>SIGUIENTE</Typography>
                 </Button>
             </Grid>

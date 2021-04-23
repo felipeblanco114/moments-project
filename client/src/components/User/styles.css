@@ -108,9 +108,10 @@
     border: solid .1px rgb(36, 44, 48, 0.2);
 }
 .circularProgress {
-    margin-left: 47% !important; 
-    margin-right: 53% !important;
-    margin-top: 4rem;
+    margin-left: 48% !important; 
+    margin-right: 52% !important;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
     color: black !important;
 }
 

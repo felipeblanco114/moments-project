@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Avatar, Grid, CircularProgress } from '@material-ui/core';
 import './styles.css';
 import Post from '../Posts/Post/Post';
@@ -113,7 +113,7 @@ const User = () => {
         <div className='grid-users'>
             <div className='card'>
                 <div className='card-header'>
-                    { user?.result?.googleId == id ?
+                    { user?.result?.googleId === id ?
                     <Avatar className='avatarUser' alt={users?.name} src={user?.result.imageUrl}>
                         {users?.name?.charAt(0) ? users?.name?.charAt(0) : 'Google User'.charAt(0)}
                     </Avatar>
@@ -123,7 +123,7 @@ const User = () => {
                     </Avatar>
                     }
                 </div>
-                { user?.result?._id === users?._id ? <></>
+                { user?.result?._id === users?._id || !user ? null
                 :
                 <button className='follow-btn' onClick={() => dispatch(followUser(users._id, user?.result._id))}>
                     <BottonFollow />
@@ -180,7 +180,7 @@ const User = () => {
                             <Post post={post} setCurrentId={setCurrentId} />
                         </div>
                     </Grid>
-            )) : <CircularProgress size='5rem' color='black' className='circularProgress'/>}
+            )) : <CircularProgress size='3.5rem' color='black' className='circularProgress'/>}
             </div>
             }
         </div>}

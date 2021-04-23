@@ -42,6 +42,12 @@ export default makeStyles((theme) => ({
         marginTop: '4rem',
         color: 'black'
       },
+      gridResults: {
+        width: '75%',
+      },
+      mainContainer: {
+        justifyContent: 'center',
+      },
       [theme.breakpoints.down('sm')] : {
         mainContainer: {
           flexDirection: 'column-reverse',

@@ -125,6 +125,22 @@ a:visited {
     font-weight: bold;
     margin-left: 2rem;
 }
+.login-no-user {
+    background-color: rgb(36, 44, 48);
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto', sans-serif;
+    padding: .6rem;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: .2rem;
+    transition: .2s;
+    font-weight: bold;
+    margin-left: 7rem;
+}
+.login-no-user:hover {
+    color: rgb(36, 44, 48);
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
 .login:hover {
     color: rgb(36, 44, 48);
     background-color: rgb(255, 255, 255);
@@ -178,5 +194,11 @@ button:focus {outline:0;}
     }
     .login {
         margin-left: 4.2rem;
+    }
+    .login-no-user {
+        position: absolute;
+        top: 1rem;
+        left: -4rem;
+
     }
   }
