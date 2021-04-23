@@ -16,7 +16,10 @@ const User = () => {
     const [users, setUsers] = useState(null);
 
     const [posts, setPosts] = useState([]);
-    console.log(posts);
+
+    const [likePosts, setLikePosts] = useState([]);
+
+    const [switchPosts, setSwitchPosts] = useState(false);
 
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
@@ -38,7 +41,7 @@ const User = () => {
             console.log(error);
         })
     };
-
+    
     const fetchPostsUser = () => {
         fetch(`http://localhost:5000/posts/${id}`)
         .then(response => {
@@ -52,12 +55,33 @@ const User = () => {
         })
     };
 
+    const fetchLikePosts = () => {
+        fetch(`http://localhost:5000/posts/${id}/likes`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            setLikePosts(data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     // FETCH EFFECT
 
     useEffect(() => {
         fetchPostsUser();
         fetchUser();
     }, [currentId, url]);
+
+    const handleSetSwitch = () => {
+        fetchLikePosts();
+        setSwitchPosts(true);
+    }
+    const handleTrueSwitch = () => {
+        setSwitchPosts(false);
+    }
 
     // COMPONENTS
 
@@ -83,8 +107,10 @@ const User = () => {
     }
 
 
-    return ( <>
-        { users === null ? <CircularProgress size='3.4rem' className='circularProgress'/> : <div className='grid-users'>
+    return ( 
+        <>
+        { users === null ? <CircularProgress size='3.4rem' color='black' className='circularProgress'/> : 
+        <div className='grid-users'>
             <div className='card'>
                 <div className='card-header'>
                     { user?.result?.googleId == id ?
@@ -127,6 +153,17 @@ const User = () => {
                 </div>
                 }
             </div>
+
+            <div className='posts-likes'>
+                {switchPosts === false ? <h2 onClick={handleTrueSwitch} className='selected'>USER POSTS</h2> :
+                <h2 onClick={handleTrueSwitch}>USER POSTS</h2>
+                }
+                {switchPosts === true ? <h2 onClick={handleSetSwitch} className='selected'>ME GUSTA</h2> :
+                <h2 onClick={handleSetSwitch}>ME GUSTA</h2>
+                }
+            </div>
+            
+            { switchPosts === false ? 
             <div className='grid-posts'>
                 {posts.map((post) => (
                         <Grid item key={post._id} >
@@ -135,7 +172,17 @@ const User = () => {
                             </div>
                         </Grid>
                 ))}
+            </div> :
+            <div className='grid-posts'>
+            { likePosts.length ? likePosts.map((post) => (
+                    <Grid item key={post._id} >
+                        <div className='singular-post'>
+                            <Post post={post} setCurrentId={setCurrentId} />
+                        </div>
+                    </Grid>
+            )) : <CircularProgress size='5rem' color='black' className='circularProgress'/>}
             </div>
+            }
         </div>}
         </>
     )

@@ -69,7 +69,7 @@ export const followUser = async (req, res) => {
 
     if(!idFollow) return res.json({ message: 'No identificado.' })
 
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No se encuentra ningún post con ese id');
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No se encuentra ningún user con ese id');
 
     const user = await User.findById(id);
     const userFollow = await User.findById(idFollow);
@@ -82,13 +82,12 @@ export const followUser = async (req, res) => {
         userFollow.following.push(id);
     } else {
         // unfollower user
-        user.followers = user.followers.filter((id) => id !== String(idFollow) )
+        user.followers = user.followers.filter((id) => id !== String(idFollow) );
         userFollow.following = userFollow.following.filter((id) => id !== String(id));
     }
 
     const updatedUser = await User.findByIdAndUpdate(id, user, { new: true });
-    const updatedFollowUser = await User.findeByIdAndUpdate(idFollow, userFollow, { new: true })
+    // const updatedFollowUser = await User.findByIdAndUpdate(idFollow, userFollow, { new: true })
 
     res.json(updatedUser);
-    res.json(updatedFollowUser);
 }

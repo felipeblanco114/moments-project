@@ -112,4 +112,16 @@ export const filterPosts = async (req, res) => {
     }
 }
 
+export const getLikePosts = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const posts = await PostMessage.find({
+            likes: id
+        });
+        res.json(posts);
+    } catch (error) {
+        console.log({ message: error })
+    }
+}
+
 export default router;

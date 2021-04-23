@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
 
 .card {
     background-color: rgb(252, 252, 252);
@@ -107,13 +108,39 @@
     border: solid .1px rgb(36, 44, 48, 0.2);
 }
 .circularProgress {
-    margin-left: 50%;
+    margin-left: 47% !important; 
+    margin-right: 53% !important;
     margin-top: 4rem;
     color: black !important;
-  }
+}
+
+.posts-likes {
+    font-family: 'Train One', cursive;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: -3rem;
+}
+.posts-likes h2{
+    margin: 2rem;
+    padding: .2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+.selected {
+    border-bottom: solid .2rem rgb(43, 46, 42);
+}
 
 @media (max-width: 680px) {
     .singular-post {
         width: 100%;
+    }
+    .circularProgress {
+        margin-left: 38% !important; 
+        margin-right: 62% !important;
+        margin-top: 4rem;
+        color: black !important;
     }
 }
