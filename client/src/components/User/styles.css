@@ -122,15 +122,21 @@
     justify-content: center;
     width: 100%;
     margin-top: -3rem;
+    color: rgb(36, 44, 48, 0.9);
 }
 .posts-likes h2{
     margin: 2rem;
     padding: .2rem;
     cursor: pointer;
     -webkit-user-select: none;
+    transition: .1s ease-in;
+}
+.posts-likes h2:hover {
+    text-shadow: 2px 2px 2px rgb(36, 44, 48, 0.2);
 }
 .selected {
     border-bottom: solid .2rem rgb(43, 46, 42);
+    text-shadow: 2px 2px 2px rgb(36, 44, 48, 0.2);
 }
 
 @media (max-width: 680px) {

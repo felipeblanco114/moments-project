@@ -155,11 +155,11 @@ const User = () => {
             </div>
 
             <div className='posts-likes'>
-                {switchPosts === false ? <h2 onClick={handleTrueSwitch} className='selected'>USER POSTS</h2> :
-                <h2 onClick={handleTrueSwitch}>USER POSTS</h2>
+                {switchPosts === false ? <h2 onClick={handleTrueSwitch} className='selected'>POSTS</h2> :
+                <h2 onClick={handleTrueSwitch}>POSTS</h2>
                 }
-                {switchPosts === true ? <h2 onClick={handleSetSwitch} className='selected'>ME GUSTA</h2> :
-                <h2 onClick={handleSetSwitch}>ME GUSTA</h2>
+                {switchPosts === true ? <h2 onClick={handleSetSwitch} className='selected'>LIKES</h2> :
+                <h2 onClick={handleSetSwitch}>LIKES</h2>
                 }
             </div>
             
