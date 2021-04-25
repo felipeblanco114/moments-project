@@ -9,23 +9,28 @@ import { followUser } from '../../actions/user';
 
 const User = () => {
 
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
+    const [user, setUser] =                 useState(JSON.parse(localStorage.getItem('profile')));
     // STATES
 
-    const [users, setUsers] = useState(null);
+    const [users, setUsers] =               useState(null);
+    console.log(users)
 
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] =               useState([]);
 
-    const [likePosts, setLikePosts] = useState([]);
+    const [likePosts, setLikePosts] =       useState([]);
 
-    const [switchPosts, setSwitchPosts] = useState(false);
+    const [follows, setFollows] =           useState([]);
 
-    const [currentId, setCurrentId] = useState(0);
-    const dispatch = useDispatch();
+    const [switchPosts, setSwitchPosts] =   useState(false);
+
+    const [currentId, setCurrentId] =       useState(0);
+
+    const dispatch =                        useDispatch();
 
     const url = useLocation().pathname;
     const id = url.split('/').pop();
+
+    const userFollowId = users?._id;
 
     // FETCHS
 
@@ -68,10 +73,24 @@ const User = () => {
         })
     }
 
+    const fetchFollows = () => {
+        fetch(`http://localhost:5000/user/${id}/getFollows`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            setFollows(data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     // FETCH EFFECT
 
     useEffect(() => {
         fetchPostsUser();
+        fetchFollows();
         fetchUser();
     }, [currentId, url]);
 
@@ -82,6 +101,11 @@ const User = () => {
     const handleTrueSwitch = () => {
         setSwitchPosts(false);
     }
+
+    const handleFollow = () => {
+        dispatch(followUser(id));
+        setTimeout(window.location.reload.bind(window.location), 1000);
+    };
 
     // COMPONENTS
 
@@ -123,12 +147,12 @@ const User = () => {
                     </Avatar>
                     }
                 </div>
-                {/* { user?.result?._id === users?._id || !user ? null
+                 { user?.result?._id === users?._id || !user ? null
                 :
-                <button className='follow-btn' onClick={() => dispatch(followUser(users._id, user?.result._id))}>
+                <button className='follow-btn' onClick={() => handleFollow()}>
                     <BottonFollow />
                 </button>
-                } */}
+                }
                 <div className='card-body'>
                     <h3 className='fullname'>
                         {users?.name?.toUpperCase() ? users?.name?.toUpperCase() : posts[0]?.name?.toUpperCase() || 'Usuario de Google sin publicaciones' }
@@ -140,9 +164,9 @@ const User = () => {
                 <div className='col user-posts-card'>
                     <p><span className='count'>{posts.length}&nbsp;</span>{posts > 1 ? 'Posts' : 'Post'}</p>
                 </div>
-                {/* {users?.name ? <div className='card-footer'>
+                 {users?.name ? <div className='card-footer'>
                     <div className='col vr'>
-                        <p><span className='count'>{users?.following.length}</span>&nbsp;Siguiendo</p>
+                        <p><span className='count'>{follows?.length}</span>&nbsp;Siguiendo</p>
                     </div>
                     <div className='col'>
                         <p><span className='count'>{users?.followers.length}</span>&nbsp;Seguidores</p>
@@ -151,7 +175,7 @@ const User = () => {
                 <div className='col'>
                  <p><span className='google-user-followers'>Los usuarios de Google no pueden tener seguidores</span></p>
                 </div>
-                } */}
+                }
             </div>
 
             <div className='posts-likes'>

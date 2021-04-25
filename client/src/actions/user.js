@@ -11,9 +11,9 @@ export const getUser = () => async (dispatch) => {
     }
 };
 
-export const followUser = (id, userFollowId) => async (dispatch) => {
+export const followUser = (id) => async (dispatch) => {
     try {
-        const { data } = await api.followUser(id, userFollowId);
+        const { data } = await api.followUser(id);
 
         dispatch({ type: UPDATE_USER, payload: data })
     } catch (error) {

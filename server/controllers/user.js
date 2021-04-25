@@ -64,30 +64,41 @@ export const getUser = async (req, res) => {
 }
 
 export const followUser = async (req, res) => {
-    const { id } = req.params.id;
-    const { idFollow } = req.params.idFollow
+    const { id } = req.params;
 
-    if(!idFollow) return res.json({ message: 'No identificado.' })
+    if(!req.userId) return res.json({ message: 'No identificado.' })
 
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No se encuentra ningún user con ese id');
 
     const user = await User.findById(id);
-    const userFollow = await User.findById(idFollow);
 
-    const index = user.followers.findIndex((id) => id === String(idFollow));
+    const index = user.followers.findIndex((id) => id === String(req.userId));
 
     if(index === -1) {
         // follow user
-        user.followers.push(idFollow);
-        userFollow.following.push(id);
+        user.followers.push(req.userId);
     } else {
         // unfollower user
-        user.followers = user.followers.filter((id) => id !== String(idFollow) );
-        userFollow.following = userFollow.following.filter((id) => id !== String(id));
+        user.followers = user.followers.filter((id) => id !== String(req.userId) );
     }
 
     const updatedUser = await User.findByIdAndUpdate(id, user, { new: true });
     // const updatedFollowUser = await User.findByIdAndUpdate(idFollow, userFollow, { new: true })
 
     res.json(updatedUser);
+}
+
+export const getFollows = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const users = await User.find({
+            followers: id
+        });
+
+        res.json(users)
+    } catch (error) {
+        console.log({ message: error })
+    }
+    
 }
