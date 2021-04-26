@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Avatar, Grid, CircularProgress } from '@material-ui/core';
 import './styles.css';
 import Post from '../Posts/Post/Post';
 import { useDispatch } from 'react-redux';
 import { followUser } from '../../actions/user';
+import Modal from './Modal';
 
 
 const User = () => {
@@ -13,7 +14,6 @@ const User = () => {
     // STATES
 
     const [users, setUsers] =               useState(null);
-    console.log(users)
 
     const [posts, setPosts] =               useState([]);
 
@@ -25,9 +25,12 @@ const User = () => {
 
     const [currentId, setCurrentId] =       useState(0);
 
+    const [isOpen, setIsOpen] =             useState(false);
+
     const dispatch =                        useDispatch();
 
     const url = useLocation().pathname;
+    const history = useHistory();
     const id = url.split('/').pop();
 
     const userFollowId = users?._id;
@@ -107,6 +110,11 @@ const User = () => {
         setTimeout(window.location.reload.bind(window.location), 1000);
     };
 
+    const handleClickFollow = (follow) => {
+        history.push(follow._id);
+        setIsOpen(false);
+    }
+
     // COMPONENTS
 
     const Follow = () => {
@@ -165,9 +173,17 @@ const User = () => {
                     <p><span className='count'>{posts.length}&nbsp;</span>{posts > 1 ? 'Posts' : 'Post'}</p>
                 </div>
                  {users?.name ? <div className='card-footer'>
-                    <div className='col vr'>
+                    <div className='col vr' onClick={() => setIsOpen(true)} style={{ cursor: 'pointer' }}>
                         <p><span className='count'>{follows?.length}</span>&nbsp;Siguiendo</p>
                     </div>
+                    <Modal open={isOpen} onClose={()=> setIsOpen(false)}>
+                        {follows?.length === 0 ? <div>Este usuario no sigue a nadie.</div> : follows?.map((follow) => (
+                            <div className='follow-list' onClick={() => handleClickFollow(follow)}>
+                                <div>{follow?.name}</div>
+                                <Avatar className='mini-avatar' alt={follow?.name} />
+                            </div>
+                        ))}
+                    </Modal>
                     <div className='col'>
                         <p><span className='count'>{users?.followers.length}</span>&nbsp;Seguidores</p>
                     </div>

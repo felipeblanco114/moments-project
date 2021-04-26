@@ -140,6 +140,26 @@
     text-shadow: 2px 2px 2px rgb(36, 44, 48, 0.2);
 }
 
+.follow-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: .5rem;
+    padding-left: -1rem;
+    border-bottom: .1px solid rgba(64,64,64, 0.1);
+    margin-left: -.9rem;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+}
+.follow-list:hover {
+    font-weight: bold;
+}
+.mini-avatar {
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+    margin-left: auto;
+}
+
 @media (max-width: 680px) {
     .singular-post {
         width: 100%;
