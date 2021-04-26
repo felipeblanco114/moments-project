@@ -102,3 +102,17 @@ export const getFollows = async (req, res) => {
     }
     
 }
+
+export const getFollowers = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const user = await User.findById(id);
+        // const users = user.map((user) => user.followers);
+        // const usersFollows = await User.findById(users._id);
+
+        res.json(user);
+    } catch (error) {
+        console.log({ message: error })
+    }
+}

@@ -20,12 +20,15 @@ const User = () => {
     const [likePosts, setLikePosts] =       useState([]);
 
     const [follows, setFollows] =           useState([]);
+    const [followers, setFollowers] =        useState([]);
+    console.log(followers);
 
     const [switchPosts, setSwitchPosts] =   useState(false);
 
     const [currentId, setCurrentId] =       useState(0);
 
     const [isOpen, setIsOpen] =             useState(false);
+    const [isOpenTwo, setIsOpenTwo] =       useState(false);
 
     const dispatch =                        useDispatch();
 
@@ -88,12 +91,25 @@ const User = () => {
             console.log(error);
         })
     }
+    const fetchFollowers = () => {
+        fetch(`http://localhost:5000/user/${id}/getFollowers`)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            setFollowers(data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
 
     // FETCH EFFECT
 
     useEffect(() => {
         fetchPostsUser();
         fetchFollows();
+        fetchFollowers();
         fetchUser();
     }, [currentId, url]);
 
@@ -113,7 +129,9 @@ const User = () => {
     const handleClickFollow = (follow) => {
         history.push(follow._id);
         setIsOpen(false);
+        setIsOpenTwo(false);
     }
+
 
     // COMPONENTS
 
@@ -184,9 +202,17 @@ const User = () => {
                             </div>
                         ))}
                     </Modal>
-                    <div className='col'>
+                    <div className='col' onClick={() => setIsOpenTwo(true)} style={{ cursor: 'pointer' }}>
                         <p><span className='count'>{users?.followers.length}</span>&nbsp;Seguidores</p>
                     </div>
+                    <Modal open={isOpenTwo} onClose={() => setIsOpenTwo(false)}>
+                    {/* { followers?.map((follows) => (
+                            <div className='follow-list' onClick={() => handleClickFollow(follows)}>
+                                <div>{follows?.name}</div>
+                                <Avatar className='mini-avatar' alt={follows?.name} />
+                            </div>
+                        ))} */}
+                    </Modal>
                 </div> :
                 <div className='col'>
                  <p><span className='google-user-followers'>Los usuarios de Google no pueden tener seguidores</span></p>
