@@ -14,6 +14,7 @@ const User = () => {
     // STATES
 
     const [users, setUsers] =               useState(null);
+    console.log(users?.followers)
 
     const [posts, setPosts] =               useState([]);
 
@@ -21,7 +22,6 @@ const User = () => {
 
     const [follows, setFollows] =           useState([]);
     const [followers, setFollowers] =        useState([]);
-    console.log(followers);
 
     const [switchPosts, setSwitchPosts] =   useState(false);
 
@@ -36,7 +36,6 @@ const User = () => {
     const history = useHistory();
     const id = url.split('/').pop();
 
-    const userFollowId = users?._id;
 
     // FETCHS
 
@@ -91,25 +90,26 @@ const User = () => {
             console.log(error);
         })
     }
-    const fetchFollowers = () => {
-        fetch(`http://localhost:5000/user/${id}/getFollowers`)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            setFollowers(data);
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    }
+    // const fetchFollowers = () => {
+    //     fetch(`http://localhost:5000/user/${id}/getFollowers`)
+    //     .then(response => {
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         setFollowers(data);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     })
+    // }
+
 
     // FETCH EFFECT
 
     useEffect(() => {
         fetchPostsUser();
         fetchFollows();
-        fetchFollowers();
+        // fetchFollowers();
         fetchUser();
     }, [currentId, url]);
 
@@ -127,7 +127,7 @@ const User = () => {
     };
 
     const handleClickFollow = (follow) => {
-        history.push(follow._id);
+        history.push(follow._id || follow);
         setIsOpen(false);
         setIsOpenTwo(false);
     }
@@ -206,12 +206,12 @@ const User = () => {
                         <p><span className='count'>{users?.followers.length}</span>&nbsp;Seguidores</p>
                     </div>
                     <Modal open={isOpenTwo} onClose={() => setIsOpenTwo(false)}>
-                    {/* { followers?.map((follows) => (
+                     { users?.followers?.length === 0 ? <div>Este usuario no tiene seguidores.</div> : users?.followers?.map((follows) => (
                             <div className='follow-list' onClick={() => handleClickFollow(follows)}>
-                                <div>{follows?.name}</div>
-                                <Avatar className='mini-avatar' alt={follows?.name} />
+                                <div>{follows}</div>
+                                <Avatar className='mini-avatar' alt={follows} />
                             </div>
-                        ))} */}
+                        ))}
                     </Modal>
                 </div> :
                 <div className='col'>

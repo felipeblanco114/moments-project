@@ -29,8 +29,6 @@ const Posts = ({ setCurrentId }) => {
     ));
 
 
-    console.log(posts);
-
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = list.slice(indexOfFirstPost, indexOfLastPost);

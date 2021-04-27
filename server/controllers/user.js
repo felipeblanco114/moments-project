@@ -83,7 +83,6 @@ export const followUser = async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(id, user, { new: true });
-    // const updatedFollowUser = await User.findByIdAndUpdate(idFollow, userFollow, { new: true })
 
     res.json(updatedUser);
 }

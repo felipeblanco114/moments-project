@@ -1,0 +1,44 @@
+.modal-post {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 1.3rem;
+    z-index: 1000;
+    border-radius: .1rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 40rem;
+    max-height: 90vh;
+}
+.modal-post img {
+    max-height: 85vh;
+}
+.overlay-post {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.7);
+    z-index: 1000;
+}
+
+.modal-btn-post {
+    background-color: #fff;
+    border: rgba(34,34,34, 0.2) .1px solid;
+    padding: .2rem;
+    width: 2rem;
+    margin-left: auto;
+    margin-right: -0.5rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    border-radius: .1rem;
+    transition: .2s;
+}
+.modal-btn-post:hover {
+    cursor: pointer;
+    color: #B0000F;
+    border-color: #B0000F;
+}

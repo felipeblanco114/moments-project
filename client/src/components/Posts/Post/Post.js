@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
-// import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import 'moment/locale/es';
 import { useDispatch } from 'react-redux';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import Modal from './Modal';
 
 import { Link } from 'react-router-dom';
 
@@ -22,7 +22,9 @@ const Post = ({ post, setCurrentId }) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
-    const user = JSON.parse(localStorage.getItem('profile'))
+    const user = JSON.parse(localStorage.getItem('profile'));
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const Likes = () => {
         if (post.likes.length > 0) {
@@ -58,7 +60,10 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
         <Card className={`${classes.card} ${'shadow'}`} >
-            <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
+            <CardMedia className={classes.media} image={post.selectedFile} title={post.title} onClick={() => setIsOpen(true)} />
+            <Modal open={isOpen} onClose={()=> setIsOpen(false)}>
+                <img src={post.selectedFile} alt={post.title} />
+            </Modal>
             <div className={classes.overlay}>
                 <Typography variant='h6' className={classes.typography} ><Link to={`/user/${post.creator}`}>{ post.name }</Link> </Typography>
                 <Typography variant='body2' className={`${classes.typography} ${classes.email}`} > { post.email } </Typography>
