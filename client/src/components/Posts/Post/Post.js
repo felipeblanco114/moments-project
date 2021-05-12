@@ -63,13 +63,34 @@ const Post = ({ post, setCurrentId }) => {
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} onClick={() => setIsOpen(true)} />
             <Modal open={isOpen} onClose={()=> setIsOpen(false)}>
                 <img src={post.selectedFile} alt={post.title} />
+                <div className='modal-information'>
+                    <div className='modal-tags'> 
+                        <p>{ post.tags.map((tag) => `#${tag}` ).join(' ') }</p> 
+                    </div>
+                    <h2 className='modal-title'>{post.title}</h2>
+                    <p className='modal-message'>{post.message}</p>
+                    <div className={classes.details}>
+                </div>
+                    <CardActions className={classes.cardActions}>
+                        <Button size='small' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))} >
+                            <Likes />
+                        </Button>
+                        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator || user?.result?.isAdmin) &&
+                            (   
+                            <Button size='small' onClick={() => deleteWarning()} >
+                                <DeleteIcon fontSize='small' />
+                            </Button> 
+                            )
+                        }
+                    </CardActions>
+                </div>
             </Modal>
             <div className={classes.overlay}>
                 <Typography variant='h6' className={classes.typography} ><Link to={`/user/${post.creator}`}>{ post.name }</Link> </Typography>
                 <Typography variant='body2' className={`${classes.typography} ${classes.email}`} > { post.email } </Typography>
                 <Typography variant='body2'> { moment(post.createdAt).locale('es').fromNow() } </Typography>
             </div>
-            {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
+            {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator || user?.result?.isAdmin) &&
                 (
                 <div className={classes.overlay2}>
                     <Button 
@@ -93,7 +114,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Button size='small' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))} >
                     <Likes />
                 </Button>
-                {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
+                {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator || user?.result?.isAdmin) &&
                     (   
                     <Button size='small' onClick={() => deleteWarning()} >
                         <DeleteIcon fontSize='small' />

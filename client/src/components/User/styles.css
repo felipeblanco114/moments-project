@@ -30,7 +30,7 @@
 
 .avatarUser {
     color: rgb(199,0,37) !important;
-    background-color: rgb(43, 46, 42) !important;
+    background-color: rgb(255, 255, 255) !important;
     width: 84px !important;
     height: 84px !important;
     position: absolute;
@@ -130,6 +130,7 @@
     padding: .2rem;
     cursor: pointer;
     -webkit-user-select: none;
+            user-select: none;
     transition: .1s ease-in;
 }
 .posts-likes h2:hover {
@@ -160,6 +161,24 @@
     width: 1.3rem !important;
     height: 1.3rem !important;
     margin-left: auto;
+}
+.red-text:hover {
+    color: #B0000F;
+    transition: 0.2s;
+}
+.admin {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: .8rem;
+    margin-top: 1.3rem;
+    background-color: rgba(230,230,230);
+    width: 4rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
 }
 
 @media (max-width: 680px) {

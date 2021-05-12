@@ -124,4 +124,20 @@ export const getLikePosts = async (req, res) => {
     }
 }
 
+export const getPostsFollow = async (req, res) => {
+    const { id, ownId } = req.params;
+
+    try {
+        const posts = await PostMessage.find({
+            $or: [
+                { creator: id },
+                { creator: ownId }
+              ]
+        });
+        res.json(posts);
+    } catch (error) {
+        console.log({ message: error })
+    }
+};
+
 export default router;

@@ -17,6 +17,7 @@ function SearchBar() {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const [disabled, setDisabled] = useState(true);
+    const [avatarUser, setAvatarUser] = useState();
 
     const dispatch = useDispatch();
 
@@ -79,6 +80,10 @@ function SearchBar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [url]);
 
+    useEffect(() => {
+        setAvatarUser(user?.result.imageUrl ? user?.result.imageUrl : avatarFilter[0]?.selectedFile);
+    }, [user?.result])
+
     const id = user?.result?.googleId ? user?.result?.googleId : user?.result?._id;
     const userUrl = url.pathname.split('/').includes('user');
 
@@ -120,12 +125,15 @@ function SearchBar() {
             { user?.result ? (
                 <div className={classes.profile}>
                     <Link to={`/user/${id}`}>
-                    <Avatar className={`${classes.purple} ${classes.typography}`} alt={user?.result.name} src={user?.result.imageUrl ? user?.result.imageUrl : avatarFilter[0]?.selectedFile}>
+                    <Avatar className={`${classes.purple} ${classes.typography}`} 
+                        alt={user?.result.name} 
+                        src={avatarUser}
+                    >
                         {user?.result.name.charAt(0)}
                     </Avatar>
                     </Link>
                     <Typography className={`${classes.userName} ${classes.typography}`} >
-                        Hola, <Link to={`/user/${id}`}>&nbsp;{user?.result.name.split(' ')[0]}!</Link>
+                        Hola <Link to={`/user/${id}`}>&nbsp;{user?.result.name.split(' ')[0]}!</Link>
                     </Typography>
                     <button className='login' onClick={logout} >CERRAR SESIÓN</button>
                 </div>

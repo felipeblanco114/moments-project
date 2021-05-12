@@ -4,16 +4,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    padding: 1.3rem;
     z-index: 1000;
     border-radius: .1rem;
     display: flex;
-    flex-direction: column;
-    max-width: 40rem;
+    flex-direction: row;
+    max-width: 90vw;
     max-height: 90vh;
+    padding: .1rem;
 }
 .modal-post img {
     max-height: 85vh;
+    max-width: 60vw;
 }
 .overlay-post {
     position: fixed;
@@ -26,19 +27,20 @@
 }
 
 .modal-btn-post {
-    background-color: #fff;
+    background-color: rgba(0,0,0,0.0);
     border: rgba(34,34,34, 0.2) .1px solid;
-    padding: .2rem;
-    width: 2rem;
-    margin-left: auto;
-    margin-right: -0.5rem;
-    margin-top: -0.5rem;
-    margin-bottom: 1rem;
-    border-radius: .1rem;
     transition: .2s;
+    color: #fff;
+    font-size: 2rem;
+    border-radius: 10rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
 }
 .modal-btn-post:hover {
     cursor: pointer;
-    color: #B0000F;
-    border-color: #B0000F;
+    background-color: rgba(255,255,255,0.3);
 }

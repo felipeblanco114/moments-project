@@ -14,7 +14,7 @@ const User = () => {
     // STATES
 
     const [users, setUsers] =               useState(null);
-    console.log(users?.followers)
+    console.log(users?.followers);
 
     const [posts, setPosts] =               useState([]);
 
@@ -22,6 +22,7 @@ const User = () => {
 
     const [follows, setFollows] =           useState([]);
     const [followers, setFollowers] =        useState([]);
+    console.log(followers);
 
     const [switchPosts, setSwitchPosts] =   useState(false);
 
@@ -90,18 +91,20 @@ const User = () => {
             console.log(error);
         })
     }
-    // const fetchFollowers = () => {
-    //     fetch(`http://localhost:5000/user/${id}/getFollowers`)
-    //     .then(response => {
-    //         return response.json();
-    //     })
-    //     .then(data => {
-    //         setFollowers(data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     })
-    // }
+      const fetchFollowers = () => {
+          if(users?.followers) {
+            fetch(`http://localhost:5000/user/${users?.followers}/getFollowers`)
+          .then(response => {
+              return response.json();
+          })
+          .then(data => {
+              setFollowers(data);
+          })};
+        //   })} else {
+        //   catch(error => {
+        //       console.log(error);
+        //   })}
+      }
 
 
     // FETCH EFFECT
@@ -109,7 +112,7 @@ const User = () => {
     useEffect(() => {
         fetchPostsUser();
         fetchFollows();
-        // fetchFollowers();
+        fetchFollowers();
         fetchUser();
     }, [currentId, url]);
 
@@ -123,7 +126,7 @@ const User = () => {
 
     const handleFollow = () => {
         dispatch(followUser(id));
-        setTimeout(window.location.reload.bind(window.location), 1000);
+        setTimeout(window.location.reload.bind(window.location), 100);
     };
 
     const handleClickFollow = (follow) => {
@@ -139,7 +142,7 @@ const User = () => {
         if(users?._id){
         return users.followers.find((follow) => follow === (user?.result?.googleId || user?.result?._id))
             ? (
-            <div>
+            <div className='red-text'>
                 ✓
             </div>
             ) : (
@@ -173,12 +176,11 @@ const User = () => {
                     </Avatar>
                     }
                 </div>
-                 { user?.result?._id === users?._id || !user ? null
-                :
-                <button className='follow-btn' onClick={() => handleFollow()}>
-                    <BottonFollow />
-                </button>
-                }
+                {users?.isAdmin && (
+                    <div className='admin'>
+                        Admin
+                    </div>
+                )}
                 <div className='card-body'>
                     <h3 className='fullname'>
                         {users?.name?.toUpperCase() ? users?.name?.toUpperCase() : posts[0]?.name?.toUpperCase() || 'Usuario de Google sin publicaciones' }
@@ -187,6 +189,12 @@ const User = () => {
                         {users?.email ? users.email : posts[0]?.email || '-'}
                     </h5>              
                 </div>
+                { user?.result?._id === users?._id || !user ? null
+                :
+                <button className='follow-btn' onClick={() => handleFollow()}>
+                    <BottonFollow />
+                </button>
+                }
                 <div className='col user-posts-card'>
                     <p><span className='count'>{posts.length}&nbsp;</span>{posts > 1 ? 'Posts' : 'Post'}</p>
                 </div>

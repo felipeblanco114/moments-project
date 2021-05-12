@@ -37,7 +37,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'stretch',
     width: '400px',
-    marginLeft: '4rem',
+    marginLeft: '2.6rem',
   },
   userName: {
     display: 'flex',

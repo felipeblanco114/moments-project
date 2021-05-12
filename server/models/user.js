@@ -9,6 +9,10 @@ const userSchema = mongoose.Schema({
         default: [],
     },
     id: { type: String },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 export default mongoose.model("User", userSchema);

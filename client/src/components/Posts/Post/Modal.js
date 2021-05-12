@@ -7,11 +7,11 @@ const Modal = ({ open, children, onClose }) => {
 
     return (
         <>
-        <div className='overlay-post' />
-        <div className='modal-post'>
-            <button className='modal-btn-post' onClick={onClose}>✖</button>
-            {children}
-        </div>
+        <div className='overlay-post' onClick={onClose} > <button className='modal-btn-post' onClick={onClose}>✖</button> </div>
+
+            <div className='modal-post'>
+                {children}
+            </div>
         </>
     )
 }
