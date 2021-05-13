@@ -53,7 +53,7 @@ function SearchBar() {
         setUser(null);
     }
 
-    const [search, setSearch] = useState();
+    const [search, setSearch] = useState('');
 
     const history = useHistory();
     const url = useLocation();

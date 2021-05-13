@@ -38,6 +38,7 @@ const Search = () => {
          })
         .then(data => {
            setSearch(data);
+           setLoading(false);
         })
         .catch(error => {
             console.log(error);
@@ -47,14 +48,14 @@ const Search = () => {
     // USE EFFECT
 
     useEffect(() => {
+        setLoading(true);
         fetchSearch();
-        setLoading(false);
     }, [currentId, dispatch]);
     
     // COMPONENTS
 
     const LoadingOrNull = () => {
-        if(search?.length === 0 && loading === false) {
+        if(loading === true) {
             return <CircularProgress className={classes.circular} size='3.4rem' />
         } else {
             return (
