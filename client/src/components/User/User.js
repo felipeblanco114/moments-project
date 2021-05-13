@@ -35,7 +35,7 @@ const User = () => {
 
     const url = useLocation().pathname;
     const history = useHistory();
-    const id = url.split('/').pop();
+    const id = url.split('/')[2];
 
 
     // FETCHS
@@ -99,11 +99,9 @@ const User = () => {
           })
           .then(data => {
               setFollowers(data);
+          }).catch(err =>{
+              console.log(err);
           })};
-        //   })} else {
-        //   catch(error => {
-        //       console.log(error);
-        //   })}
       }
 
 
@@ -112,9 +110,12 @@ const User = () => {
     useEffect(() => {
         fetchPostsUser();
         fetchFollows();
-        fetchFollowers();
         fetchUser();
     }, [currentId, url]);
+    
+    useEffect(() => {
+        fetchFollowers();
+    }, [url])
 
     const handleSetSwitch = () => {
         fetchLikePosts();

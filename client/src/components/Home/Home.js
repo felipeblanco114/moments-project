@@ -19,13 +19,6 @@ const Home = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const id = user?.result._id || user?.result.googleId;
 
-    // const [follows, setFollows] = useState([]);
-    // console.log(follows[0]?._id);
-
-    // const [postsFollow, setPostsFollow] = useState([]);
-
-    // console.log(postsFollow?.length);
-
     const classes = useStyles();
     const dispatch = useDispatch();
 
