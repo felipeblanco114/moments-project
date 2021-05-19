@@ -120,7 +120,6 @@ a:visited {
     font-family: 'Roboto', sans-serif;
     padding: .6rem;
     border: 1px solid rgb(255, 255, 255);
-    border-radius: .2rem;
     transition: .2s;
     font-weight: bold;
     margin-left: 2rem;
@@ -131,7 +130,6 @@ a:visited {
     font-family: 'Roboto', sans-serif;
     padding: .6rem;
     border: 1px solid rgb(255, 255, 255);
-    border-radius: .2rem;
     transition: .2s;
     font-weight: bold;
     margin-left: 7rem;
@@ -162,6 +160,13 @@ button:focus {outline:0;}
     margin-top: 32px;
     border-top: 1px solid #E9EEF1;
     overflow: hidden;
+  }
+  .menu-item a {
+    color:rgb(36, 44, 48) !important;
+  }
+  .menu-item a:visited {
+    color:rgb(36, 44, 48 ) !important;
+
   }
 
 @media (max-width: 680px) {

@@ -29,9 +29,19 @@ export default makeStyles((theme) => ({
       image: {
         marginLeft: '15px',
       },
+      pagination: {
+        width: '20rem',
+        marginTop: '3rem',
+        marginBottom: '3rem',
+        marginLeft: '20%',
+      },
       [theme.breakpoints.down('sm')] : {
         mainContainer: {
           flexDirection: 'column-reverse',
+        },
+        pagination: {
+          width: '100%',
+          marginLeft: '0',
         }
       }
 }));

@@ -3,12 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   typography: {
     fontFamily: [
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
+      
+      
+      
       '"Segoe UI Symbol"',
     ].join(','),
   },
@@ -31,7 +28,6 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     width: '400px',
-    mariginRight: '2rem',
   },
   profile: {
     display: 'flex',
@@ -44,8 +40,10 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     fontSize: '1.1rem',
     color: 'rgb(255, 255, 255)',
+    padding: '.5rem',
     // cursor: 'pointer',
-    marginLeft: '.8rem',
+    marginLeft: '0rem',
+    border: 'solid rgb(250,250,250) 0.2px',
     fontWeight: '500',
     '-webkit-user-select': 'none',
     '-moz-user-select': 'none',     

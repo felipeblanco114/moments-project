@@ -179,6 +179,8 @@
     margin-right: auto;
     text-align: center;
     align-items: center;
+    -webkit-user-select: none;
+            user-select: none;
 }
 
 @media (max-width: 680px) {

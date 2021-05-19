@@ -4,6 +4,9 @@ import { Typography, Avatar } from '@material-ui/core';
 import useStyles from './styles';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
 import swal from 'sweetalert';
 
@@ -15,13 +18,15 @@ function SearchBar() {
 
     const classes = useStyles();
 
+    const [anchorEl, setAnchorEl] = useState((null));
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const [disabled, setDisabled] = useState(true);
     const [avatarUser, setAvatarUser] = useState();
+    const url = useLocation();
 
     const dispatch = useDispatch();
 
-    const posts = useSelector((state) => state.posts);
+    const { posts } = useSelector((state) => state.posts);
 
     const logout = () => {
         swal({
@@ -37,12 +42,22 @@ function SearchBar() {
                 history.push('/');
                 setUser(null);
             }
+            handleClose();
           });
         // dispatch({ type: 'LOGOUT' });
 
         // history.push('/');
 
         // setUser(null);
+    }
+
+    const handlePerfil = () => {
+        history.push(`/user/${id}`);
+        handleClose();
+    }
+    const handleHome = () => {
+        history.push(`/posts`);
+        handleClose();
     }
 
     const TokenExpired = () => {
@@ -56,7 +71,6 @@ function SearchBar() {
     const [search, setSearch] = useState('');
 
     const history = useHistory();
-    const url = useLocation();
 
     const handleChange = (e) => {
         setSearch(e.target.value);
@@ -67,6 +81,13 @@ function SearchBar() {
         history.push(`search?q=${search}`);
         window.location.reload();
     };
+
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter') {
+            history.push(`search?q=${search}`);
+            window.location.reload();
+        }
+    }
 
     useEffect(() => {
         const token = user?.token;
@@ -80,14 +101,27 @@ function SearchBar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [url]);
 
-    useEffect(() => {
-        setAvatarUser(user?.result.imageUrl ? user?.result.imageUrl : avatarFilter[0]?.selectedFile);
-    }, [user?.result])
+    const handleClick = ((event) => {
+        setAnchorEl(event.currentTarget);
+      });
+      const handleClose = () => {
+        setAnchorEl(null);
+      };
+
+    // const avatarFilter = posts?.filter((post) => user?.result.email === post.email);
+
+
+    // useEffect(() => {
+    //     if(user?.result) {
+    //         setAvatarUser(user?.result.imageUrl ? user?.result.imageUrl : avatarFilter[0] ? avatarFilter[0].selectedFile : null);    
+    //     }
+        
+    // }, [user?.result]);
 
     const id = user?.result?.googleId ? user?.result?.googleId : user?.result?._id;
     const userUrl = url.pathname.split('/').includes('user');
+    console.log( url.pathname.split('/'));
 
-    const avatarFilter = posts.filter((post) => user?.result.email === post.email);
 
     return (
     <div className="search">
@@ -108,6 +142,7 @@ function SearchBar() {
                         value={search}
                         autoComplete='off'
                         id="input"
+                        onKeyPress={handleKeyPress}
                     />
                     <input
                         className="search-btn"
@@ -124,19 +159,41 @@ function SearchBar() {
         <div className={classes.toolbar} >
             { user?.result ? (
                 <div className={classes.profile}>
-                    <Link to={`/user/${id}`}>
+                    {/* <Link to={`/user/${id}`}>
                     <Avatar className={`${classes.purple} ${classes.typography}`} 
                         alt={user?.result.name} 
                         src={avatarUser}
                     >
                         {user?.result.name.charAt(0)}
                     </Avatar>
-                    </Link>
+                    </Link> */}
+                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                     <Typography className={`${classes.userName} ${classes.typography}`} >
-                        Hola <Link to={`/user/${id}`}>&nbsp;{user?.result.name.split(' ')[0]}!</Link>
+                        Hola &nbsp;{user?.result.name.split(' ')[0]} &#9660;
+                        {/* <Link to={`/user/${id}`}></Link> */}
                     </Typography>
-                    <button className='login' onClick={logout} >CERRAR SESIÓN</button>
-                </div>
+                    </Button>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <MenuItem className='menu-item' onClick={logout} >
+                            <p >Cerrar sesión</p>
+                        </MenuItem>
+                        { url.pathname !== '/posts' ?
+                        <MenuItem className='menu-item' onClick={handleHome}>
+                            <p>Ir a inicio</p>
+                        </MenuItem> : null}
+                        { !url.pathname.split('/').includes('user') ?
+                        <MenuItem className='menu-item' onClick={handlePerfil}>
+                            <p>Ir a Perfil</p>
+                        </MenuItem> : null}
+                        </Menu>
+                    </div>
+                    
             ) : (
                 <Link to='/auth'>
                     <button type='button' className='login-no-user' >INGRESAR</button>

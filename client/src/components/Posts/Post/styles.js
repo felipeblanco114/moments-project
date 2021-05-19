@@ -31,7 +31,6 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    borderRadius: '15px',
     height: '100%',
     position: 'relative',
     backgroundColor: 'rgb(253, 250, 255)',
@@ -60,12 +59,13 @@ export default makeStyles({
   },
   title: {
     padding: '0 16px 0',
-    marginTop: '-1.5rem'
+    marginTop: '-1.5rem',
   },
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
+    marginTop: '-0.3rem'
   },
   message: {
     marginTop: '-10px'
@@ -76,6 +76,7 @@ export default makeStyles({
   },
   email: {
     fontSize: '.6rem',
-    marginTop: '-0.2rem'
+    marginTop: '-0.2rem',
+    marginLeft: '-0.5rem'
   }
 });

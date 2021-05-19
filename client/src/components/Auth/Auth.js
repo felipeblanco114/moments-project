@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import Icon from './icon';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
 import './styles.css';
 
@@ -16,6 +16,8 @@ const Auth = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const initialState = {
         firstName: '', lastName: '', email: '', password: '', confirmPassword: '',
@@ -65,6 +67,8 @@ const Auth = () => {
     };
 
     return (
+        <>
+        { !user ? 
         <Container component='main' maxWidth='xs' >
             <Paper className={classes.paper} elevation={3}>
                 <Avatar className={`${classes.avatar} ${'avatar'}`}>
@@ -116,7 +120,13 @@ const Auth = () => {
                     </Grid>
                 </form>
             </Paper>
-        </Container>
+        </Container> : 
+        <Container component='main' maxWidth='xs' >
+            <Paper className={classes.paper} elevation={3}>
+                <Typography className='auth-login' variant='h5'>Ya está registrado <br/> <Link to='/posts'>Volver a inicio</Link></Typography>
+            </Paper>
+        </Container>}
+        </>
     )
 }
 

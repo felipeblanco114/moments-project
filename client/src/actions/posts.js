@@ -1,12 +1,16 @@
 import * as api from '../api';      // Import everything from api/index.js
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, START_LOADING, END_LOADING } from '../constants/actionTypes';
 // ACTIONS CREATORS => FUNCTIONS that return ACTIONS => ACTION it's an OBJECT that has TYPE and PAYLOAD
 
-export const getPosts = () => async (dispatch) => {
-    try {
-        const { data } = await api.fetchPosts();        // Data represents the posts
 
-        dispatch({ type: FETCH_ALL, payload: data })
+
+export const getPosts = (page) => async (dispatch) => {
+    try {
+        dispatch({ type: START_LOADING });
+        const { data } = await api.fetchPosts(page);
+
+        dispatch({ type: FETCH_ALL, payload: data });
+        dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error);
     }

@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 
 .shadow:hover {
     box-shadow: 4px 7px 9px 2px rgba(0,0,0,0.18);
     -webkit-box-shadow: 4px 7px 9px 2px rgba(0,0,0,0.18);
     -moz-box-shadow: 4px 7px 9px 2px rgba(0,0,0,0.18);
+}
+.name-title {
+    font-size: 1rem !important;
+    margin-bottom: .6rem;
+    color: rgb(250,250,250);
 }
 .modal-information {
     width: 20rem;
@@ -31,4 +37,19 @@
     margin-left: .6rem;
     font-size: .8rem;
     color: rgb(150,150,150);
+}
+.a-visited {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 3rem;
+    color: rgb(250,250,255) !important;
+}
+.a-visited:visited {
+    color: rgb(255,255,255);
+    color: rgb(255,255,255) !important;
+}
+.time-created {
+    margin-left: -0.5rem !important;
+}
+.post-title:visited {
+    color: rgb(40,40,40) !important;
 }

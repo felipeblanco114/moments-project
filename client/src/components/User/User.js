@@ -6,6 +6,7 @@ import Post from '../Posts/Post/Post';
 import { useDispatch } from 'react-redux';
 import { followUser } from '../../actions/user';
 import Modal from './Modal';
+import { fetchPosts } from '../../api';
 
 
 const User = () => {
@@ -108,8 +109,8 @@ const User = () => {
     // FETCH EFFECT
 
     useEffect(() => {
-        fetchPostsUser();
         fetchFollows();
+        fetchPostsUser();
         fetchUser();
     }, [currentId, url]);
     
@@ -246,7 +247,7 @@ const User = () => {
                                 <Post post={post} setCurrentId={setCurrentId} />
                             </div>
                         </Grid>
-                ))}
+                )).reverse()} 
             </div> :
             <div className='grid-posts'>
             { likePosts.length ? likePosts.map((post) => (
@@ -255,7 +256,7 @@ const User = () => {
                             <Post post={post} setCurrentId={setCurrentId} />
                         </div>
                     </Grid>
-            )) : <CircularProgress size='3.5rem' color='black' className='circularProgress'/>}
+            )).reverse() : <CircularProgress size='3.5rem' color='black' className='circularProgress'/>}
             </div>
             }
         </div>}
