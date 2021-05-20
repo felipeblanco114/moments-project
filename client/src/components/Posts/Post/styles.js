@@ -55,7 +55,9 @@ export default makeStyles({
     justifyContent: 'space-between',
     marginTop: '3px',
     marginBottom: '24px',
-    marginLeft: '10px'
+    marginLeft: '10px',
+    position: 'relative',
+    top: '0px'
   },
   title: {
     padding: '0 16px 0',
@@ -69,6 +71,7 @@ export default makeStyles({
   },
   message: {
     marginTop: '-10px',
+    wordWrap: 'break-word',
   },
   edit: {
     marginRight: '-40px',

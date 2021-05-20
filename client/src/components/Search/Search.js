@@ -74,7 +74,7 @@ const Search = () => {
                  <Grid container className={classes.mainContainer} justify='space-between' alignItems='stretch' spacing={3} >
 
                  {search.map((post) => (
-                    <Grid item key={post._id} xs={12} sm={6} >
+                    <Grid item key={post._id} xs={12} sm={4} >
                         <Post post={post} setCurrentId={setCurrentId} />
                     </Grid>
                 ))}

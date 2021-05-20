@@ -149,7 +149,7 @@ function SearchBar() {
                         className="search-btn"
                         onClick={handleSearch}
                         id="button"
-                        value=""
+                        value="  🖤"
                         disabled={disabled}
                     />
                 </div>

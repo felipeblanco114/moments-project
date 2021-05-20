@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
+@import url('http://fonts.cdnfonts.com/css/athene');
+
 .modal {
     position: fixed;
     top: 50%;
@@ -35,6 +38,4 @@
 }
 .modal-btn:hover {
     cursor: pointer;
-    color: #B0000F;
-    border-color: #B0000F;
 }
