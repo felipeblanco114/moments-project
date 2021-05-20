@@ -8,6 +8,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
+
 import swal from 'sweetalert';
 
 import decode from 'jwt-decode';
@@ -148,7 +149,7 @@ function SearchBar() {
                         className="search-btn"
                         onClick={handleSearch}
                         id="button"
-                        value="  🔎"
+                        value=""
                         disabled={disabled}
                     />
                 </div>
@@ -159,18 +160,9 @@ function SearchBar() {
         <div className={classes.toolbar} >
             { user?.result ? (
                 <div className={classes.profile}>
-                    {/* <Link to={`/user/${id}`}>
-                    <Avatar className={`${classes.purple} ${classes.typography}`} 
-                        alt={user?.result.name} 
-                        src={avatarUser}
-                    >
-                        {user?.result.name.charAt(0)}
-                    </Avatar>
-                    </Link> */}
                     <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                    <Typography className={`${classes.userName} ${classes.typography}`} >
+                    <Typography className={`${classes.userName} ${'button-menu'}`} >
                         Hola &nbsp;{user?.result.name.split(' ')[0]} &#9660;
-                        {/* <Link to={`/user/${id}`}></Link> */}
                     </Typography>
                     </Button>
                     <Menu

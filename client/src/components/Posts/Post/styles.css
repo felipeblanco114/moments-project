@@ -54,7 +54,8 @@
 }
 .time-created {
     margin-left: -1rem !important;
-    margin-top: 5rem !important;
+    margin-top: -.6rem !important;
+    font-size: .8rem !important;
 }
 .post-title {
     font-size: 1.2rem;
@@ -71,4 +72,10 @@
 }
 .post-title:visited {
     color: rgb(40,40,40) !important;
+}
+@media (max-width: 680px) {
+    .shadow {
+        width: 20rem !important;
+        margin-left: -4rem;
+    }
 }
