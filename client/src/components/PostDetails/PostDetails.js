@@ -30,7 +30,11 @@ const PostDetails = () => {
 
      useEffect(() => {
          fetchPost();
-    }, [url])
+    }, [url]);
+
+    const handleProfile = () => {
+        history.push(`/user/${post[0].creator}`)
+    }
 
 
     return (
@@ -40,13 +44,16 @@ const PostDetails = () => {
             <div className='content' >
                 <h2>{post[0].title}</h2>
                 <p style={{ fontSize: '.9rem', marginTop: '-0.4rem', marginLeft: '1rem'}}>{post[0].tags && post[0].tags === '' ? post[0].tags.map((tag) => `#${tag} `) : null }</p>
-                <p style={{ fontSize: '1.4rem', borderBottom: 'solid 0.1px rgb(240,240,240)', paddingBottom: '1.4rem', padding: '1.4rem', wordWrap: 'break-word', marginRight: 'auto', marginLeft: 'auto', maxWidth: '26rem'}}>{post[0].message}</p>
-                <p style={{fontSize: '1.2rem', margin: '1rem'}}>{post[0].name}</p>
-                <p>{post[0].email}</p>
-                {post[0]._id}
+                <p style={{ backgroundColor: 'rgb(253,253,253)', fontSize: '1.4rem', borderBottom: 'solid 0.1px rgb(240,240,240)', paddingBottom: '1.4rem', padding: '1.4rem', wordWrap: 'break-word', marginRight: 'auto', marginLeft: 'auto', maxWidth: '26rem'}}>{post[0].message}</p>
+                <p onClick={handleProfile} className='post-detail-created' style={{ cursor: 'pointer',fontSize: '1.2rem', margin: '1rem'}}>{post[0].name}</p>
+                <p style={{ marginTop: '-.3rem', marginLeft: '1rem', color: 'rgb(120,120,120)', fontSize: '.9rem' }}>{post[0].email}</p>
+                <p style={{ marginTop: '2rem', fontSize: '.8rem' }} >{ moment(post[0].createdAt).fromNow() }</p>
             </div>
-            <div>
-                <img src={post[0].selectedFile} ult={post[0].title} className='image-post-detail' />
+            <div className='image-div'>
+                { post[0]?.selectedFile === '' ? 
+                <img style={{ minHeight: '14.64rem'}} src='https://static.thenounproject.com/png/140281-200.png' ult='no-image' className='image-post-detail' />
+                :
+                <img src={post[0].selectedFile} ult={post[0].title} className='image-post-detail' />}
             </div>
         </Paper>
         }

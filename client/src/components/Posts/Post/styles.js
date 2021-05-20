@@ -68,7 +68,7 @@ export default makeStyles({
     marginTop: '-0.3rem'
   },
   message: {
-    marginTop: '-10px'
+    marginTop: '-10px',
   },
   edit: {
     marginRight: '-40px',

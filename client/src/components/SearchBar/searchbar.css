@@ -6,10 +6,6 @@ input:focus {outline:0;}
 a {
     text-decoration: none;
     outline: none;
-    color: rgb(255, 245, 255);
-}
-a:visited {
-    color: rgb(255, 245, 255);
 }
 .logo img {
     width: 120px;

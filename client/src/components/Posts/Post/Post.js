@@ -9,7 +9,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import Modal from './Modal';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import swal from 'sweetalert';
 
@@ -19,7 +19,7 @@ import useStyles from './styles';
 import './styles.css'
 
 const Post = ({ post, setCurrentId }) => {
-
+    const history = useHistory();
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -58,6 +58,10 @@ const Post = ({ post, setCurrentId }) => {
           });
     }
 
+    const handlePost = () => {
+        history.push(`/posts/${post._id}`);
+    };
+
     return (
         <Card className={`${classes.card} ${'shadow'}`} >
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} onClick={() => setIsOpen(true)} />
@@ -87,7 +91,7 @@ const Post = ({ post, setCurrentId }) => {
             </Modal>
             <div className={classes.overlay}>
                 <h3 className={` ${'name-title'} ${'a-visited'}`} ><Link to={`/user/${post.creator}`}>{ post.name }</Link> </h3>
-                <Typography variant='body2' className={`${classes.typography} ${classes.email}`} > { post.email } </Typography>
+                {/* <Typography variant='body2' className={`${classes.typography} ${classes.email}`} > { post.email } </Typography> */}
                 <Typography className='time-created' variant='body2'> { moment(post.createdAt).locale('es').fromNow() } </Typography>
             </div>
             {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator || user?.result?.isAdmin) &&
@@ -103,17 +107,19 @@ const Post = ({ post, setCurrentId }) => {
                 </div>
                 )
             }
-            <div className={classes.details}>
-                <Typography variant='body2' color='textSecondary' > { post.tags.map((tag) => `#${tag}` ).join(' ') } </Typography>
+            <div onClick={handlePost} >
+                <div className={classes.details}>
+                    <Typography variant='body2' color='textSecondary' > { post.tags.map((tag) => `#${tag}` ).join(' ') } </Typography>
+                </div>
+                <Typography className={`${classes.title} ${classes.typography} `} variant='h6' >
+                    <Link to={`/posts/${post._id}`} className='post-title'  >
+                        { post.title } 
+                    </Link>
+                </Typography>
+                <CardContent>
+                    <Typography className={`${classes.message} ${classes.typography}`} variant='body1' color='textSecondary' component='p' > { post.message } </Typography>
+                </CardContent>
             </div>
-             <Typography className={`${classes.title} ${classes.typography} `} variant='h6' >
-                <Link to={`/posts/${post._id}`} className='post-title'  >
-                    { post.title } 
-                </Link>
-            </Typography>
-            <CardContent>
-                <Typography className={`${classes.message} ${classes.typography}`} variant='body1' color='textSecondary' component='p' > { post.message } </Typography>
-            </CardContent>
             <CardActions className={classes.cardActions}>
                 <Button size='small' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))} >
                     <Likes />
