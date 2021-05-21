@@ -92,18 +92,18 @@ const User = () => {
             console.log(error);
         })
     }
-      const fetchFollowers = () => {
-          if(users?.followers) {
-            fetch(`http://localhost:5000/user/${users?.followers}/getFollowers`)
-          .then(response => {
-              return response.json();
-          })
-          .then(data => {
-              setFollowers(data);
-          }).catch(err =>{
-              console.log(err);
-          })};
-      }
+    //   const fetchFollowers = () => {
+    //       if(users?.followers) {
+    //         fetch(`http://localhost:5000/user/${users?.followers}/getFollowers`)
+    //       .then(response => {
+    //           return response.json();
+    //       })
+    //       .then(data => {
+    //           setFollowers(data);
+    //       }).catch(err =>{
+    //           console.log(err);
+    //       })};
+    //   }
 
 
     // FETCH EFFECT
@@ -115,7 +115,7 @@ const User = () => {
     }, [currentId, url]);
     
     useEffect(() => {
-        fetchFollowers();
+        // fetchFollowers();
     }, [url])
 
     const handleSetSwitch = () => {
@@ -136,6 +136,27 @@ const User = () => {
         setIsOpen(false);
         setIsOpenTwo(false);
     }
+
+    const forFollowers = () => {
+        if(users?.followers?.length) {
+            for(let i = 0; i < users?.followers.length; i++) {
+                fetch(`http://localhost:5000/user/${users?.followers[i]}/getFollowers`)
+                .then(response => {
+                    return response.json();
+                    })
+                .then(data => {
+                    setFollowers([data]);
+                }).catch(err =>{
+                    console.log(err);
+                })
+            };
+        }
+    }
+    useEffect(() => {
+        forFollowers();
+    }, [users])
+
+    
 
 
     // COMPONENTS
@@ -216,13 +237,13 @@ const User = () => {
                         <p><span className='count'>{users?.followers.length}</span>&nbsp;Seguidores</p>
                     </div>
                     <Modal open={isOpenTwo} onClose={() => setIsOpenTwo(false)}>
-                     { users?.followers?.length === 0 ? <div>Este usuario no tiene seguidores.</div> : users?.followers?.map((follows) => (
+                     { users?.followers?.length === 0 ? <div>Este usuario no tiene seguidores.</div> : followers?.map((follows) => (
                             <div className='follow-list' onClick={() => handleClickFollow(follows)}>
-                                <div>{follows}</div>
+                                <div>{follows.name}</div>
                                 <Avatar className='mini-avatar' alt={follows} />
                             </div>
                         ))}
-                    </Modal>
+                    </Modal> 
                 </div> :
                 <div className='col'>
                  <p><span className='google-user-followers'>Los usuarios de Google no pueden tener seguidores</span></p>
