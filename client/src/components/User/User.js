@@ -36,7 +36,7 @@ const User = () => {
 
     const url = useLocation().pathname;
     const history = useHistory();
-    const id = url.split('/')[2];
+    const id = url.split('/').pop();
 
 
     // FETCHS
