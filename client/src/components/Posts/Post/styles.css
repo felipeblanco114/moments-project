@@ -76,6 +76,5 @@
 @media (max-width: 680px) {
     .shadow {
         width: 20rem !important;
-        margin-left: -4rem;
     }
 }
