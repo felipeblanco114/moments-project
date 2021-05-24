@@ -77,4 +77,16 @@
     .shadow {
         width: 20rem !important;
     }
+    .modal-information {
+        display: none;
+        width: 20rem;
+        font-family: 'Poppins', sans-serif;
+        height: 100%;
+    }
+    .image-modal-information {
+        max-width: 91vw !important;
+        max-height: 90vh !important;
+        margin-left: 0px !important;
+        padding: 0px !important;
+    }
 }

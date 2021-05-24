@@ -138,6 +138,7 @@ const User = () => {
     }
 
     const forFollowers = () => {
+        let followersFor = [];
         if(users?.followers?.length) {
             for(let i = 0; i < users?.followers.length; i++) {
                 fetch(`http://localhost:5000/user/${users?.followers[i]}/getFollowers`)
@@ -145,12 +146,13 @@ const User = () => {
                     return response.json();
                     })
                 .then(data => {
-                    setFollowers([data]);
+                    followersFor.push([data]);
                 }).catch(err =>{
                     console.log(err);
                 })
             };
         }
+        setFollowers(followersFor);
     }
     useEffect(() => {
         forFollowers();
@@ -180,6 +182,9 @@ const User = () => {
         return (user?.result?._id) ?
                 <Follow />
         : null
+    }
+    const NoLikes = () => {
+        
     }
 
 
@@ -239,7 +244,7 @@ const User = () => {
                     <Modal open={isOpenTwo} onClose={() => setIsOpenTwo(false)}>
                      { users?.followers?.length === 0 ? <div>Este usuario no tiene seguidores.</div> : followers?.map((follows) => (
                             <div className='follow-list' onClick={() => handleClickFollow(follows)}>
-                                <div>{follows.name}</div>
+                                <div>{follows[0].name}</div>
                                 <Avatar className='mini-avatar' alt={follows} />
                             </div>
                         ))}

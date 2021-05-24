@@ -26,14 +26,20 @@ const Home = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const id = user?.result._id || user?.result.googleId;
 
+    const [follows, setFollows] = useState([]);
+
     const query = useQuery();
 
     const classes = useStyles();
     const dispatch = useDispatch();
 
+    const [postsFollow, setPostsFollow] = useState([]);
+
     const page = query.get('page') || 1;
 
-    // const fetchFollows = () => {
+    console.log(user?.result);
+
+    // const fetchFollows = () => {     // Recibe todos los usuarios que sigue mi usuario
     //     fetch(`http://localhost:5000/user/${id}/getFollows`)
     //     .then(response => {
     //         return response.json();
@@ -46,43 +52,41 @@ const Home = () => {
     //     })
     // }
 
-    // const fetchPostsFollow = () => {
-    //     fetch(`http://localhost:5000/posts/${follows[0]?._id}/${id}/getPostsFollow`)
-    //     .then(response => {
-    //         return response.json();
-    //     })
-    //     .then(data => {
-    //         setPostsFollow(data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     })
+
+
+
+    // const fetchPostsFollow = () => {    // Fetch a todos los posts de los users que sigo y de los propios
+    //         for(let i = 0; i < follows?.length; i++) {
+    //             fetch(`http://localhost:5000/posts/${follows[i]._id}/${id}/postsFollow`)
+    //             .then(response => {
+    //                 return response.json();
+    //                 })
+    //             .then(data => {
+    //                 setPostsFollow([data]);
+    //             }).catch(err =>{
+    //                 console.log(err);
+    //             })
+    //     }
     // }
+    // EJEMPLO: http://localhost:5000/posts/608b832039c0271accfce1ac/6089984e993c9d315c813ee9/postsFollow
+    // RECIBE TODOS LOS POSTS DE THE WEEKND Y FELIPE BLANCO
 
     useEffect(() => {
         dispatch(getPosts());
         // fetchFollows();
         // fetchPostsFollow();
+        // if(user?.result) {
+        //     fetchFollows();              // Recibe todos los usuarios que sigo
+            // fetchPostsFollow();          // Recibe todos los posts de los users que sigo y los propios posts
+        // }
     }, [currentId, dispatch]);
 
-    // const followPosts = () => {
-    //     <div className='grid-posts'>
-    //         { postsFollow.length ? followPosts.map((post) => (
-    //                 <Grid item key={post._id} >
-    //                     <div className='singular-post'>
-    //                         <Post post={post} setCurrentId={setCurrentId} />
-    //                     </div>
-    //                 </Grid>
-    //         )) : <CircularProgress size='3.5rem' color='black' className='circularProgress'/>}
-    //     </div>
-    // };
 
     return (
         <Grow in>
             <Container maxWidth='xl'>
-                 <Grid container className={classes.mainContainer} justify='space-between' alignItems='stretch' spacing={3} >
+                     <Grid container className={classes.mainContainer} justify='space-between' alignItems='stretch' spacing={3} >
 
-                     {/* <followPosts /> */}
                     <Grid item xs={12} sm={8} >
                         <Posts setCurrentId={setCurrentId} />
                     </Grid>
@@ -90,10 +94,10 @@ const Home = () => {
                     <Grid item xs={12} sm={4} >
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
                     </Grid>
-                </Grid>
-                <Paper elavation={6} className={classes.pagination} >
-                    <Paginate page={page} />
-                </Paper>
+                    </Grid>
+                    <Paper elavation={6} className={classes.pagination} >
+                        <Paginate page={page} />
+                    </Paper>
             </Container>
         </Grow>
     );
