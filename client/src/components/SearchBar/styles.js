@@ -69,7 +69,7 @@ export default makeStyles((theme) => ({
       width: '100%',
     },
     profile: {
-      marginLeft: '1rem',
+      marginLeft: '2rem',
       marginTop: '-2rem'
     }
   }

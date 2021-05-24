@@ -198,4 +198,7 @@
         margin-top: 4rem;
         color: black !important;
     }
+    .grid-posts {
+        margin-left: .7rem;
+    }
 }

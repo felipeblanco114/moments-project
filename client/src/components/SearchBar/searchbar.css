@@ -188,10 +188,9 @@ button:focus {outline:0;}
     }
     .search-btn {
         position: relative;
-        top: -2.4rem;
+        top: -2.7rem;
         left: 19.6rem;
         border: none;
-
     }
     .logo {
         display: none;

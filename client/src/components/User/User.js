@@ -132,7 +132,7 @@ const User = () => {
     };
 
     const handleClickFollow = (follow) => {
-        history.push(follow._id || follow);
+        history.push(follow._id || follow[0]._id);
         setIsOpen(false);
         setIsOpenTwo(false);
     }

@@ -71,7 +71,7 @@ const Search = () => {
     return (
             <Grow in className={classes.gridResults}>
             { search?.length ? <Container>
-                 <Grid container className={classes.mainContainer} justify='space-between' alignItems='stretch' spacing={3} >
+                 <Grid style={{ marginLeft: '-4.1rem', width: '90vw'}} container className={classes.mainContainer} justify='space-between' alignItems='stretch' spacing={3} >
 
                  {search.map((post) => (
                     <Grid item key={post._id} xs={12} sm={4} >

@@ -10,11 +10,11 @@
 }
 
 .post:hover {
-    background-color: black !important;
-    color: rgb(255, 255, 255);
+    transition: 0.2s;
+    background-color: rgb(240,240,240) !important;
 }
 .limpiar:hover {
-    background-color: #C70025 !important;
+    background-color: rgb(240,240,240) !important;
 }
 .momentazo p {
     font-family: 'Train One', cursive;
