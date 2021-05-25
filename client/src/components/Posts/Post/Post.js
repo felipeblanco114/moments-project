@@ -108,17 +108,20 @@ const Post = ({ post, setCurrentId }) => {
                 </div>
                 )
             }
-            <div onClick={handlePost} >
-                <div className={classes.details}>
+            <div className={classes.details}>
                     <Typography variant='body2' color='textSecondary' > { post.tags.map((tag) => `#${tag}` ).join(' ') } </Typography>
                 </div>
+            <div onClick={handlePost} >
+                
                 <Typography className={`${classes.title} ${classes.typography} `} variant='h6' >
                     <Link to={`/posts/${post._id}`} className='post-title'  >
                         { post.title } 
                     </Link>
                 </Typography>
                 <CardContent>
-                    <Typography className={`${classes.message} ${classes.typography}`} variant='body1' color='textSecondary' component='p' > { post.message } </Typography>
+                    <Typography className={`${classes.message} ${classes.typography}`} variant='body1' color='textSecondary' component='p' >
+                        { post.message.slice(0, 35) + '...' }
+                          </Typography>
                 </CardContent>
             </div>
             <CardActions className={classes.cardActions}>
