@@ -121,7 +121,7 @@ const Post = ({ post, setCurrentId }) => {
                 <CardContent>
                     <Typography className={`${classes.message} ${classes.typography}`} variant='body1' color='textSecondary' component='p' >
                         { post.message.slice(0, 35) + '...' }
-                          </Typography>
+                    </Typography>
                 </CardContent>
             </div>
             <CardActions className={classes.cardActions}>
