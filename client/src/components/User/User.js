@@ -183,9 +183,6 @@ const User = () => {
                 <Follow />
         : null
     }
-    const NoLikes = () => {
-        
-    }
 
 
     return ( 
