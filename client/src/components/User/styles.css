@@ -68,9 +68,9 @@
     border-right: 1px solid rgb(244, 244,244);
 }
 .singular-post {
-    width: 30rem;
-    margin-left: auto;
-    margin-right: auto;
+    width: 20rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     margin-bottom: 3rem;
     justify-content: center !important;
 }
@@ -186,6 +186,14 @@
     align-items: center;
     -webkit-user-select: none;
             user-select: none;
+}
+.grid-posts {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (max-width: 680px) {
