@@ -16,6 +16,10 @@
     font-family: 'Poppins', sans-serif !important;
     margin-left: -.7rem;
 }
+.name-title a{
+    color: rgb(250,250,250) !important;
+    
+}
 .name-title:visited {
     color: rgb(250,250,250) !important;
 }

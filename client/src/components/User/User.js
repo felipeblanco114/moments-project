@@ -31,6 +31,7 @@ const User = () => {
 
     const [isOpen, setIsOpen] =             useState(false);
     const [isOpenTwo, setIsOpenTwo] =       useState(false);
+    const [ loading, setLoading] = useState(true);
 
     const dispatch =                        useDispatch();
 
@@ -74,6 +75,7 @@ const User = () => {
         })
         .then(data => {
             setLikePosts(data);
+            setLoading(false);
         })
         .catch(error => {
             console.log(error);

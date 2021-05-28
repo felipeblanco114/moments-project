@@ -44,6 +44,7 @@ export default makeStyles((theme) => ({
       },
       gridResults: {
         width: '75%',
+        marginLeft: '4.5rem'
       },
       mainContainer: {
         justifyContent: 'center',
@@ -51,6 +52,10 @@ export default makeStyles((theme) => ({
       [theme.breakpoints.down('sm')] : {
         mainContainer: {
           flexDirection: 'column-reverse',
-        }
+        },
+        gridResults: {
+          width: '75%',
+          marginLeft: '3rem'
+        },
       }
 }));
