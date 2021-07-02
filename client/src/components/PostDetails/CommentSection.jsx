@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Typography, TextField, Button } from '@material-ui/core';
+import { Typography, TextField, Button, Divider } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import './styles.css';
 import { commentPost } from '../../actions/posts';
@@ -38,6 +38,7 @@ const CommentSection = ({ post }) => {
                             <p>{comment.split(':')[1]}</p>
                         </p>
                         <div ref={commentsRef} />
+                        <Divider style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }} />
                         </>
                     ))}
                 </div>) : null }
