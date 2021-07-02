@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { CircularProgress, Paper } from '@material-ui/core';
+import { CircularProgress, Paper, Divider } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
+import CommentSection from './CommentSection';
 
 import './styles.css';
 
@@ -48,6 +49,8 @@ const PostDetails = () => {
                 <p onClick={handleProfile} className='post-detail-created' style={{ cursor: 'pointer',fontSize: '1.2rem', margin: '1rem'}}>{post[0].name}</p>
                 <p style={{ marginTop: '-.3rem', marginLeft: '1rem', color: 'rgb(120,120,120)', fontSize: '.9rem' }}>{post[0].email}</p>
                 <p style={{ marginTop: '2rem', fontSize: '.8rem' }} >{ moment(post[0].createdAt).fromNow() }</p>
+                <Divider variant='middle' style={{ marginTop: '1rem' }} />
+                <CommentSection post={post[0]} />
             </div>
             <div className='image-div'>
                 { post[0]?.selectedFile === '' ? 

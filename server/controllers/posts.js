@@ -153,4 +153,21 @@ export const getPostsFollow = async (req, res) => {
     }
 };
 
+export const commentPost = async (req, res) => {
+    const { id } = req.params;
+    const { value } = req.body;
+
+    try {
+        const post = await PostMessage.findById(id);
+
+        post.comments.push(value);
+
+        const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
+        
+        res.json(updatedPost);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export default router;

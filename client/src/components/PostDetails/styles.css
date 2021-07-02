@@ -27,6 +27,10 @@
     margin: 1rem;
     font-family: 'Athene', sans-serif !important;
 }
+.content h3 {
+    margin: 1rem;
+    font-family: 'Athene', sans-serif !important;
+}
 .content .post-detail-created {
     font-family: 'Athene', sans-serif !important;
     font-weight: bold;
@@ -52,6 +56,19 @@
     left: 30rem;
     font-size: 3rem;
     top: -.7rem;
+}
+
+.comments-section {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif !important;
+    margin-left: .8rem;
+}
+.comments {
+    height: 12.5rem;
+    overflow-y: auto;
+    margin-right: 1.9rem;
+    width: 50%;
 }
 
 @media (max-width: 600px) {
@@ -114,5 +131,10 @@
         padding-right: 0;
         font-family: 'Poppins', sans-serif !important;
         justify-content: space-between;
+    }
+    .comments-section {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
     }
   }
