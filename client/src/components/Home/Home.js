@@ -37,7 +37,6 @@ const Home = () => {
 
     const page = query.get('page') || 1;
 
-    console.log(user?.result);
 
     // const fetchFollows = () => {     // Recibe todos los usuarios que sigue mi usuario
     //     fetch(`http://localhost:5000/user/${id}/getFollows`)
