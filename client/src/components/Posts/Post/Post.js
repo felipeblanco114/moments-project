@@ -67,7 +67,7 @@ const Post = ({ post, setCurrentId }) => {
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title} onClick={() => setIsOpen(true)} />
             <Modal open={isOpen} onClose={()=> setIsOpen(false)}>
                 { post.selectedFile.length > 1 ? <img src={post.selectedFile} alt={post.title} className={'image-modal-information'} /> : 
-                 <img src='https://static.thenounproject.com/png/140281-200.png' ult='no-image' />}
+                 <img src='https://static.thenounproject.com/png/140281-200.png' alt='nothing' />}
                 <div className='modal-information'>
                     <div className='modal-tags'> 
                         <p>{ post.tags.map((tag) => `#${tag}` ).join(' ') }</p> 

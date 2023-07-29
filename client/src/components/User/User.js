@@ -238,7 +238,7 @@ const User = () => {
                         ))}
                     </Modal>
                     <div className='col' onClick={() => setIsOpenTwo(true)} style={{ cursor: 'pointer' }}>
-                        <p><span className='count'>{users?.followers.length}</span>&nbsp;Seguidores</p>
+                        <p><span className='count'>{users?.followers.length}</span>&nbsp;{users?.followers.length === 1 ? 'Seguidor' : 'Seguidores' }</p>
                     </div>
                     <Modal open={isOpenTwo} onClose={() => setIsOpenTwo(false)}>
                      { users?.followers?.length === 0 ? <div>Este usuario no tiene seguidores.</div> : followers?.map((follows) => (

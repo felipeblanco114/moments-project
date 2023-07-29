@@ -34,6 +34,7 @@ export default makeStyles({
     height: '100%',
     position: 'relative',
     backgroundColor: 'rgb(253, 250, 255)',
+    cursor: 'pointer',
   },
   overlay: {
     position: 'absolute',
